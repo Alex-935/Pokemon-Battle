@@ -5,6 +5,13 @@ public class pokemonBattle {
 
     public static void main(String[] args) {
 
+        //Moves
+        Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15);
+        Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10);
+        Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10);
+        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
+
+        //Pokemon
         Pokemon userPokemon = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), 105, 150, 90, 150, 90, 95);
         Pokemon compPokemon = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), 108, 130, 95, 80, 85, 102);
         
