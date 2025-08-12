@@ -40,9 +40,30 @@ public class pokemonBattle {
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 """;
                 
-        System.out.println(userPokemon.type.get(0));
-        System.out.println(compPokemon.type.get(1));
+        System.out.println("*****************************************");
+        System.out.println(" Welcome to the Pokemon Battle Simulator");
+        System.out.println("*****************************************");
+        //System.out.println("");
+        System.out.println(battleScreen(userPokemon, compPokemon));
         
+    }
+
+    public static String battleScreen(Pokemon userPokemon, Pokemon compPokemon) {
+
+        return String.format("""
+                _________________________________
+                |                               |
+                |   %s                          
+                |   Hp: %s / %s               |
+                |                               |
+                |                               |
+                |                               |
+                |                               |
+                |               %s              
+                |               Hp: %s / %s   |
+                _________________________________
+                """, compPokemon.name, compPokemon.currentHp, compPokemon.hp,
+                     userPokemon.name, userPokemon.currentHp, userPokemon.hp);
     }
 
 
