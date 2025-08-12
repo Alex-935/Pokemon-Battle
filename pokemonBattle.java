@@ -16,7 +16,7 @@ public class pokemonBattle {
         Pokemon userPokemon = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)), 165, 155, 95, 155, 95, 100);
         Pokemon compPokemon = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
         
-        String rayAscii = """
+        String rayquazaAscii = """
                 ⠀⠀⠀⠀⢀⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⠸⣟⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⠀⢸⡀⠳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -59,40 +59,40 @@ public class pokemonBattle {
         welcomeMessage(userPokemon, compPokemon);
 
         // repeats battle sequence until we get a winner
-        //do {
+        while (!userPokemon.hasFainted && !compPokemon.hasFainted) {
 
-        //print out user's pokemon's moves
-        System.out.println("What will " + userPokemon.name + " do?");
-        System.out.println("1. " + userPokemon.moves.get(0).name);
-        System.out.println("2. " + userPokemon.moves.get(1).name);
-        System.out.println("3. " + userPokemon.moves.get(2).name);
-        System.out.println("4. " + userPokemon.moves.get(3).name);
+            //print out user's pokemon's moves
+            System.out.println("What will " + userPokemon.name + " do?");
+            System.out.println("1. " + userPokemon.moves.get(0).name);
+            System.out.println("2. " + userPokemon.moves.get(1).name);
+            System.out.println("3. " + userPokemon.moves.get(2).name);
+            System.out.println("4. " + userPokemon.moves.get(3).name);
 
-        //Asks the user to enter which move they want to use until they give an acceptable answer
-        while (!accepted) { 
+            accepted = false;
+            //Asks the user to enter which move they want to use until they give an acceptable answer
+            while (!accepted) { 
 
-            System.out.print("Please enter the number of the move you want to use: ");
-            moveSelection = scanner.nextLine();
+                System.out.print("Please enter the number of the move you want to use: ");
+                moveSelection = scanner.nextLine();
 
-            if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {  
-                accepted = true;
+                if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {  
+                    accepted = true;
+                }
             }
-        }
-        
-        //user choses which move they want to use
-        userMove = userPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
+            
+            //user choses which move they want to use
+            userMove = userPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
-        //Perorm both players attacks and print the result
-        battleSequence(userPokemon, userMove, compPokemon);
+            //Perorm both players attacks and print the result
+            battleSequence(userPokemon, userMove, compPokemon);
 
-        //} while (!userPokemon.hasFainted || !compPokemon.hasFainted);
+            //Displays match outcome
 
-        //Displays match outcome
+            if (userPokemon.hasFainted || compPokemon.hasFainted) {
+                matchEnd(userPokemon);
+            };
 
-        if (userPokemon.hasFainted || compPokemon.hasFainted) {
-            matchEnd(userPokemon);
         };
-
         scanner.close();
     }
 
