@@ -55,16 +55,13 @@ public class pokemonBattle {
         Move userMove;//the move the user has picked for this turn
         Move compMove;//the move the computer is using this turn
 
-        //UI output
-        System.out.println("*****************************************");
-        System.out.println(" Welcome to the Pokemon Battle Simulator");
-        System.out.println("*****************************************");
-        //System.out.println("");
-        System.out.println("You are challenged by Champion Cynthia");
-        System.out.println("Champion Cynthia sent out Garchomp!");
-        System.out.println("Go! Rayquaza!");
-        System.out.println(battleScreen(userPokemon, compPokemon));
+        //greets users
+        welcomeMessage(userPokemon, compPokemon);
 
+        // repeats battle sequence until we get a winner
+        //do {
+
+        //print out user's pokemon's moves
         System.out.println("What will " + userPokemon.name + " do?");
         System.out.println("1. " + userPokemon.moves.get(0).name);
         System.out.println("2. " + userPokemon.moves.get(1).name);
@@ -88,11 +85,28 @@ public class pokemonBattle {
         //Perorm both players attacks and print the result
         battleSequence(userPokemon, userMove, compPokemon);
 
+        //} while (!userPokemon.hasFainted || !compPokemon.hasFainted);
+
         //Displays match outcome
 
-        matchEnd(userPokemon);
+        if (userPokemon.hasFainted || compPokemon.hasFainted) {
+            matchEnd(userPokemon);
+        };
 
         scanner.close();
+    }
+
+    public static void welcomeMessage(Pokemon userPokemon, Pokemon compPokemon) {
+        
+        //UI output
+        System.out.println("*****************************************");
+        System.out.println(" Welcome to the Pokemon Battle Simulator");
+        System.out.println("*****************************************");
+        //System.out.println("");
+        System.out.println("You are challenged by Champion Cynthia");
+        System.out.println("Champion Cynthia sent out " + compPokemon.name + "!");
+        System.out.println("Go! " + userPokemon.name + "!");
+        System.out.println(battleScreen(userPokemon, compPokemon));
     }
 
     public static String battleScreen(Pokemon userPokemon, Pokemon compPokemon) {
@@ -186,6 +200,8 @@ public class pokemonBattle {
             if (userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println(userPokemon.name + " fainted!");
+            } else {
+                System.out.println(battleScreen(userPokemon, compPokemon));
             };
              
         } 
@@ -199,6 +215,8 @@ public class pokemonBattle {
             if (compPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println("The foe's " + compPokemon.name + " fainted!");
+            } else {
+                System.out.println(battleScreen(userPokemon, compPokemon));
             };
             
         }
@@ -212,6 +230,8 @@ public class pokemonBattle {
             if (userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println(userPokemon.name + " fainted!");
+            } else {
+                System.out.println(battleScreen(userPokemon, compPokemon));
             };
         }   
     }
