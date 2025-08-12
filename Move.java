@@ -3,7 +3,7 @@ public class Move {
     //attributes
     String name;
     String type;//flying, rock, fire, etc
-    String category;//physical, special, status
+    String category;//phys - physical, spec - special, stat - status
     int power;
     int accuracy;//likelihood aa move hits
     int pp;//number of times a move can be used
