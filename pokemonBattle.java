@@ -12,8 +12,8 @@ public class pokemonBattle {
         Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
 
         //Pokemon
-        Pokemon userPokemon = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), 105, 150, 90, 150, 90, 95);
-        Pokemon compPokemon = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), 108, 130, 95, 80, 85, 102);
+        Pokemon userPokemon = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)), 105, 150, 90, 150, 90, 95);
+        Pokemon compPokemon = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  108, 130, 95, 80, 85, 102);
         
         String rayAscii = """
                 ⠀⠀⠀⠀⢀⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -52,6 +52,13 @@ public class pokemonBattle {
         System.out.println("*****************************************");
         //System.out.println("");
         System.out.println(battleScreen(userPokemon, compPokemon));
+
+        //test get moves
+        System.out.println(userPokemon.moves.get(0).name);
+        System.out.println(userPokemon.moves.get(1).name);
+        System.out.println(compPokemon.moves.get(2).name);
+        System.out.println(userPokemon.moves.get(3).name);
+
         
     }
 

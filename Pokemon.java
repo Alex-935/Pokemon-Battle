@@ -7,6 +7,7 @@ public class Pokemon {
     //char gender; Doesn't show in terminal
     int level;
     ArrayList<String> type;
+    ArrayList<Move> moves;
     //Pokemon's Stats for battling
     int hp;
     int atk;
@@ -18,18 +19,18 @@ public class Pokemon {
 
     //class of Pokemon's moves
     //Move[] moves;
-    ArrayList<Move> moves;
+    //ArrayList<Move> moves;
     //ArrayList<String> type, ArrayList<Move> moves
 
     //Constructor
-    Pokemon(String name, int level, ArrayList<String> type, int hp, int atk, int def,
+    Pokemon(String name, int level, ArrayList<String> type, ArrayList<Move> moves, int hp, int atk, int def,
             int spAtk, int spDef, int spd) {
 
         this.name = name;
         //this.gender = gender;// alt + 11 ♂. alt + 12 ♀
         this.level = level;
         this.type = type;
-        //this.moves = moves;
+        this.moves = moves;
         this.hp = hp;
         this.atk = atk;
         this.def = def;
