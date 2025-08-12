@@ -14,9 +14,10 @@
 
  - Validation on move selection
 
-<img width="810" height="416" alt="pokemonBattle Validation on move selection" src="https://github.com/user-attachments/assets/1a6a8096-ce4b-42de-b5b9-0f934a576295" />#
+<img width="810" height="416" alt="pokemonBattle Validation on move selection" src="https://github.com/user-attachments/assets/1a6a8096-ce4b-42de-b5b9-0f934a576295" />
 
- - Various features shown beloow:
+ - Various features shown below:
+      - Code is modular to take advantage of reusable components
       - Fastest Pokemon moves first
       - Correct Hp shown when damage is dealt (will not drop below 0)
       - Custom message based on wether you won or lost
