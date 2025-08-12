@@ -84,13 +84,8 @@ public class pokemonBattle {
         }
         
         userMove = userPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
-        //prints the name of the move the user selected
-        System.out.println(userPokemon.name + " used "+ userMove.name + "!");
-        //calculate moves Damage
-        int damage = calculateDamage(userPokemon, userMove, compPokemon);
-        //Deal damage
-        compPokemon.currentHp -= damage;
-        
+
+        battleSequence(userPokemon, userMove, compPokemon);
         System.out.println(battleScreen(userPokemon, compPokemon));
 
 
@@ -132,7 +127,15 @@ public class pokemonBattle {
         return (int) Math.floor(baseDamage);
     }
 
+    public static void battleSequence(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon) {
 
+        //prints the name of the move the user selected
+        System.out.println(atkPokemon.name + " used "+ atkMove.name + "!");
+        //calculate moves Damage
+        int damage = calculateDamage(atkPokemon, atkMove, defPokemon);
+        //Deal damage
+        defPokemon.currentHp -= damage;
+    }
 
 
 }
