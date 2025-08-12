@@ -200,7 +200,7 @@ public class pokemonBattle {
             if (userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println(userPokemon.name + " fainted!");
-            } else {
+            } else if (!compPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
             };
              
@@ -215,7 +215,7 @@ public class pokemonBattle {
             if (compPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println("The foe's " + compPokemon.name + " fainted!");
-            } else {
+            } else if (!userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
             };
             
