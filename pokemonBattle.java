@@ -58,7 +58,7 @@ public class pokemonBattle {
         //greets users
         welcomeMessage(userPokemon, compPokemon);
 
-        // repeats battle sequence until we get a winner
+        // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
         while (!userPokemon.hasFainted && !compPokemon.hasFainted) {
 
             //print out user's pokemon's moves
@@ -68,6 +68,7 @@ public class pokemonBattle {
             System.out.println("3. " + userPokemon.moves.get(2).name);
             System.out.println("4. " + userPokemon.moves.get(3).name);
 
+            //needs to be reset every iteration of while loop
             accepted = false;
             //Asks the user to enter which move they want to use until they give an acceptable answer
             while (!accepted) { 
@@ -86,8 +87,7 @@ public class pokemonBattle {
             //Perorm both players attacks and print the result
             battleSequence(userPokemon, userMove, compPokemon);
 
-            //Displays match outcome
-
+            //Displays match outcome when either pokemon has fainted
             if (userPokemon.hasFainted || compPokemon.hasFainted) {
                 matchEnd(userPokemon);
             };
@@ -96,38 +96,42 @@ public class pokemonBattle {
         scanner.close();
     }
 
+    //displays message welcoming you when copde is first ran
     public static void welcomeMessage(Pokemon userPokemon, Pokemon compPokemon) {
         
-        //UI output
+        //Greeting Message
         System.out.println("*****************************************");
         System.out.println(" Welcome to the Pokemon Battle Simulator");
         System.out.println("*****************************************");
-        //System.out.println("");
+
+        // Start Battle Dialogue
         System.out.println("You are challenged by Champion Cynthia");
         System.out.println("Champion Cynthia sent out " + compPokemon.name + "!");
         System.out.println("Go! " + userPokemon.name + "!");
         System.out.println(battleScreen(userPokemon, compPokemon));
     }
 
+    //returns screen to display current battle status
     public static String battleScreen(Pokemon userPokemon, Pokemon compPokemon) {
 
         return String.format("""
                 ____________________________________________________
                 |                                                  |
                 |   %s  lv.%d                        
-                |   Hp: %d / %d                                  |
+                |   Hp: %d / %d                                  
                 |                                                  |
                 |                                                  |
                 |                                                  |
                 |                                                  |
                 |                              %s  lv.%d         
-                |                              Hp: %d / %d       |
+                |                              Hp: %d / %d       
                 ____________________________________________________
                 """, compPokemon.name, compPokemon.level, compPokemon.currentHp, compPokemon.hp,
                      userPokemon.name, userPokemon.level, userPokemon.currentHp, userPokemon.hp);
-    //compPokemon.gender, userPokemon.gender,
+    //compPokemon.gender, userPokemon.gender, //didn't display correctly, scraped legacy idea
     }
 
+    //uses official pokemon damage formula to calculate battle damage
     public static int calculateDamage(Pokemon attackingPokemon, Move move, Pokemon defendingPokemon) {
 
         //Damage = (((((Level, 0.4 + 2), Base Power, (Attack/Defense)) / 50) + 2), Modifiers), and Random Number.
@@ -143,6 +147,7 @@ public class pokemonBattle {
         return (int) Math.floor(baseDamage);
     }
 
+    //displays move use, calculates the damage and applies it to defending pokemon
     public static void battleAttack(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon) {
 
         //prints the name of the move the user selected
@@ -153,19 +158,19 @@ public class pokemonBattle {
         defPokemon.currentHp -= damage;
     }
 
-    
+    //deals with actual fighting sequence, adds checks to ensure a fainted pokemon cannot attack
     public static void battleTurn(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon, Boolean flipDisplay) {
         //player's move
         battleAttack(atkPokemon, atkMove, defPokemon);
         faintedCheck(defPokemon);
-        //post-move result
+        //posts-move result. flipDisplay is used to ensure the user's pokemon is always displayed in the bottom right of the battleScreen.
         if (flipDisplay) {
             System.out.println(battleScreen(atkPokemon, defPokemon));
         } else {
             System.out.println(battleScreen(defPokemon, atkPokemon));
         }
 
-        // if the defending pokemon has fainted
+        // if the defending pokemon has fainted, tell the user
         if (defPokemon.hasFainted) {
             if (flipDisplay) {
                 System.out.println("The foe's " + defPokemon.name + " fainted!");
@@ -173,13 +178,14 @@ public class pokemonBattle {
                 System.out.println(defPokemon.name + " fainted!");
             }
             
-        } //if the defending pokemon lives, he attacks
+        } //if the defending pokemon lives, he attacks. We then check if the other pokemon fainted from the attack
         else {
             battleAttack(defPokemon, atkMove, atkPokemon);
             faintedCheck(atkPokemon);
         };
     }
 
+    //checks to see if a pokemon has fainted. Sets hp to 0 so we don't have a negative health value.
     public static void faintedCheck(Pokemon defPokemon) {
         
         if (defPokemon.currentHp <= 0) {
@@ -188,6 +194,7 @@ public class pokemonBattle {
         }
     }
 
+    //calculates battle order based on the pokemons speed. Also used to ensure the sys.outs are displayed in the correct order and under the right conditions.
     public static void battleSequence(Pokemon userPokemon, Move userMove, Pokemon compPokemon) {
 
         //if user's pokemon is faster
@@ -196,7 +203,7 @@ public class pokemonBattle {
             //player's attck
             battleTurn(userPokemon, userMove, compPokemon, true);
 
-            //computer's attack, only if the computer's pokemon survived the last attack
+            //after the computer's attack, tells the user the result of the battle
             if (userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println(userPokemon.name + " fainted!");
@@ -211,7 +218,7 @@ public class pokemonBattle {
             //computer's attck
             battleTurn(compPokemon, userMove, userPokemon, false);
 
-            //player's attack, only if the player's pokemon survived the last attack
+            ////after the players's attack, tells the user the result of the battle
             if (compPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println("The foe's " + compPokemon.name + " fainted!");
@@ -226,7 +233,7 @@ public class pokemonBattle {
             //player's attck
             battleTurn(userPokemon, userMove, compPokemon, true);
 
-            //computer's attack, only if the computer's pokemon survived the last attack
+            //after the computer's attack, tells the user the result of the battle
             if (userPokemon.hasFainted) {
                 System.out.println(battleScreen(userPokemon, compPokemon));
                 System.out.println(userPokemon.name + " fainted!");
@@ -236,6 +243,7 @@ public class pokemonBattle {
         }   
     }
 
+    //decides which final message to print when the winner has been decided
     public static void matchEnd(Pokemon userPokemon) {
 
         if (userPokemon.hasFainted) {
@@ -245,6 +253,7 @@ public class pokemonBattle {
         }
     }
 
+    //prints if the player defeated Cynthia
     public static void cynthiaLost() {
         //payout = level of last pokemon in opponent's party * base (Champion $200) https://bulbapedia.bulbagarden.net/wiki/Prize_money
         System.out.println();
@@ -256,6 +265,8 @@ public class pokemonBattle {
         System.out.println();
     }
 
+
+    //prints if the player lost to the opponent
     public static void playerLost() {
         //Lost money = player's highest pokemon lvl * base (120 at 8 badges) https://bulbapedia.bulbagarden.net/wiki/Black_out
         System.out.println();
@@ -265,8 +276,5 @@ public class pokemonBattle {
         System.out.println("You blacked out!");
         System.out.println();
     }
-
-
-
 
 }
