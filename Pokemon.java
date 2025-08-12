@@ -14,7 +14,7 @@ public class Pokemon {
     int currentHp;
 
     //class of Pokemon's moves
-    //Move moves;
+    Move[] moves;
 
     //Constructor
     Pokemon(String name, int level, String[] type, int hp, int atk, int def,
