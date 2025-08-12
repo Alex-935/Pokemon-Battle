@@ -13,17 +13,13 @@
 <img width="816" height="538" alt="pokemonBattle dynamic battle screen" src="https://github.com/user-attachments/assets/54e21837-3892-465b-9f7e-162c6d2b1bf5" />
 
  - Validation on move selection
-    - Choose your Pokemon
+    - Choose your Pokemon (Choosing your pokemon changes the move pool)
     - Choose the Trainer you want to face
     - Choose your move
   
 <img width="944" height="574" alt="pokemonBattle Choose Pokemon" src="https://github.com/user-attachments/assets/ccc0091c-e06a-4cef-9e9d-45e154d2425c" />
 
 <img width="810" height="416" alt="pokemonBattle Validation on move selection" src="https://github.com/user-attachments/assets/1a6a8096-ce4b-42de-b5b9-0f934a576295" />
-
-  - Choosing your pokemon changes the moves
-
-<img width="1118" height="618" alt="pokemonBattle Custom Battle" src="https://github.com/user-attachments/assets/7e4f3e3d-fbc5-4ad0-82db-179af989b3e8" />
 
   - Get a different victory message based on your opponent
 
