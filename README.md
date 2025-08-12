@@ -23,3 +23,7 @@
       - Custom message based on wether you won or lost
         
 <img width="1033" height="1067" alt="pokemonBattle various features" src="https://github.com/user-attachments/assets/300b0092-ce91-412d-98a3-3a831b66b511" />
+
+ - Battle will loop until a Pokemon faints
+
+<img width="1033" height="1067" alt="pokemonBattle various features" src="https://github.com/user-attachments/assets/50a17ad9-1bc8-40a7-aa50-53870bf4ad35" />
