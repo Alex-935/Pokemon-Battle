@@ -1,6 +1,6 @@
 ## Pokemon Battle Program
 
- - UI uses the same text as the official games. Layout is as close as I can ~~neaatly~~ get it inside the terminal:
+ - UI uses the same text as the official games. Layout is as close as I can ~~neatly~~ get it inside the terminal:
    
 <img width="815" height="455" alt="pokemonBattle welcome message" src="https://github.com/user-attachments/assets/1989b7a2-32a0-4a91-853f-1ec00ea173eb" />
 
