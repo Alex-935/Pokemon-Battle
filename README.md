@@ -26,4 +26,4 @@
 
  - Battle will loop until a Pokemon faints
 
-<img width="1033" height="1067" alt="pokemonBattle various features" src="https://github.com/user-attachments/assets/50a17ad9-1bc8-40a7-aa50-53870bf4ad35" />
+<img width="879" height="430" alt="pokemonBattle Loops through" src="https://github.com/user-attachments/assets/26e5dc75-ab45-4cc8-acdf-957452533a5c" />
