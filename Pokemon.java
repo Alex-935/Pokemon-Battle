@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 
 public class Pokemon {
     
     //attributes
     String name;
     int level;
-    String type;
+    ArrayList<String> type;
     //Pokemon's Stats for battling
     int hp;
     int atk;
@@ -15,15 +16,18 @@ public class Pokemon {
     int currentHp;
 
     //class of Pokemon's moves
-    Move[] moves;
+    //Move[] moves;
+    ArrayList<Move> moves;
+    //ArrayList<String> type, ArrayList<Move> moves
 
     //Constructor
-    Pokemon(String name, int level, String type, int hp, int atk, int def,
+    Pokemon(String name, int level, ArrayList<String> type, int hp, int atk, int def,
             int spAtk, int spDef, int spd) {
 
         this.name = name;
         this.level = level;
         this.type = type;
+        //this.moves = moves;
         this.hp = hp;
         this.atk = atk;
         this.def = def;
