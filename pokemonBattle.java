@@ -51,19 +51,20 @@ public class pokemonBattle {
     public static String battleScreen(Pokemon userPokemon, Pokemon compPokemon) {
 
         return String.format("""
-                _________________________________
-                |                               |
-                |   %s                          
-                |   Hp: %s / %s               |
-                |                               |
-                |                               |
-                |                               |
-                |                               |
-                |               %s              
-                |               Hp: %s / %s   |
-                _________________________________
-                """, compPokemon.name, compPokemon.currentHp, compPokemon.hp,
-                     userPokemon.name, userPokemon.currentHp, userPokemon.hp);
+                ____________________________________________________
+                |                                                  |
+                |   %s  lv.%d                        
+                |   Hp: %d / %d                                  |
+                |                                                  |
+                |                                                  |
+                |                                                  |
+                |                                                  |
+                |                              %s  lv.%d         
+                |                              Hp: %d / %d       |
+                ____________________________________________________
+                """, compPokemon.name, compPokemon.level, compPokemon.currentHp, compPokemon.hp,
+                     userPokemon.name, userPokemon.level, userPokemon.currentHp, userPokemon.hp);
+    //compPokemon.gender, userPokemon.gender,
     }
 
 

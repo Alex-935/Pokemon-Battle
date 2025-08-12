@@ -4,6 +4,7 @@ public class Pokemon {
     
     //attributes
     String name;
+    //char gender; Doesn't show in terminal
     int level;
     ArrayList<String> type;
     //Pokemon's Stats for battling
@@ -25,6 +26,7 @@ public class Pokemon {
             int spAtk, int spDef, int spd) {
 
         this.name = name;
+        //this.gender = gender;// alt + 11 ♂. alt + 12 ♀
         this.level = level;
         this.type = type;
         //this.moves = moves;
