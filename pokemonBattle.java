@@ -14,9 +14,17 @@ public class pokemonBattle {
         Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php
-        Pokemon userPokemon = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)), 165, 155, 95, 155, 95, 100);
-        Pokemon compPokemon = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
+        Pokemon rayquaza = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)), 165, 155, 95, 155, 95, 100);
+        Pokemon garchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
         
+
+        //Trainers
+        Trainer user = new Trainer("user", rayquaza, 120);
+        Trainer cynthia = new Trainer("Cynthia", garchomp, 200);
+
+        //the Trainer the computer is playing as
+        Trainer comp = cynthia;
+
         String rayquazaAscii = """
                 ⠀⠀⠀⠀⢀⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⠸⣟⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -59,17 +67,17 @@ public class pokemonBattle {
         int speedTie;//used for determining which pokemon goes first in the event their speeds are the same
 
         //greets users
-        welcomeMessage(userPokemon, compPokemon);
+        welcomeMessage(user.acePokemon, comp);
 
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
-        while (!userPokemon.hasFainted && !compPokemon.hasFainted) {
+        while (!user.acePokemon.hasFainted && !comp.acePokemon.hasFainted) {
 
             //print out user's pokemon's moves
-            System.out.println("What will " + userPokemon.name + " do?");
-            System.out.println("1. " + userPokemon.moves.get(0).name);
-            System.out.println("2. " + userPokemon.moves.get(1).name);
-            System.out.println("3. " + userPokemon.moves.get(2).name);
-            System.out.println("4. " + userPokemon.moves.get(3).name);
+            System.out.println("What will " + user.acePokemon.name + " do?");
+            System.out.println("1. " + user.acePokemon.moves.get(0).name);
+            System.out.println("2. " + user.acePokemon.moves.get(1).name);
+            System.out.println("3. " + user.acePokemon.moves.get(2).name);
+            System.out.println("4. " + user.acePokemon.moves.get(3).name);
 
             //needs to be reset every iteration of while loop
             accepted = false;
@@ -85,18 +93,18 @@ public class pokemonBattle {
             }
             
             //user choses which move they want to use
-            userMove = userPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
+            userMove = user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
             //computerMove
-            compMove = userPokemon.moves.get(random.nextInt(1, 5) - 1);
+            compMove = user.acePokemon.moves.get(random.nextInt(1, 5) - 1);
 
             speedTie = random.nextInt(0, 2);//used for determining which pokemon goes first in the event their speeds are the same
             //Perorm both players attacks and print the result
-            battleSequence(userPokemon, userMove, compPokemon, compMove, speedTie);
+            battleSequence(user.acePokemon, userMove, comp.acePokemon, compMove, speedTie);
 
             //Displays match outcome when either pokemon has fainted
-            if (userPokemon.hasFainted || compPokemon.hasFainted) {
-                matchEnd(userPokemon);
+            if (user.acePokemon.hasFainted || comp.acePokemon.hasFainted) {
+                matchEnd(user, comp);
             };
 
         };
@@ -104,7 +112,7 @@ public class pokemonBattle {
     }
 
     //displays message welcoming you when copde is first ran
-    public static void welcomeMessage(Pokemon userPokemon, Pokemon compPokemon) {
+    public static void welcomeMessage(Pokemon userPokemon, Trainer comp) {
         
         //Greeting Message
         System.out.println("*****************************************");
@@ -112,10 +120,10 @@ public class pokemonBattle {
         System.out.println("*****************************************");
 
         // Start Battle Dialogue
-        System.out.println("You are challenged by Champion Cynthia");
-        System.out.println("Champion Cynthia sent out " + compPokemon.name + "!");
+        System.out.println("You are challenged by " + comp.name);
+        System.out.println(comp.name + " sent out " + comp.acePokemon + "!");
         System.out.println("Go! " + userPokemon.name + "!");
-        System.out.println(battleScreen(userPokemon, compPokemon));
+        System.out.println(battleScreen(userPokemon, comp.acePokemon));
     }
 
     //returns screen to display current battle status
@@ -142,14 +150,28 @@ public class pokemonBattle {
     public static int calculateDamage(Pokemon attackingPokemon, Move move, Pokemon defendingPokemon) {
 
         //Damage = (((((Level, 0.4 + 2), Base Power, (Attack/Defense)) / 50) + 2), Modifiers), and Random Number.
-        
-        //physical moves
-        double baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.atk / defendingPokemon.def)) / 50) + 2;
-        //special moves
-        //double baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.spAtk / defendingPokemon.spDef)) / 50) + 2;
+        double baseDamage;
+
+        if (move.category.equals("Phys")) {
+            //physical move
+            baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.atk / defendingPokemon.def)) / 50) + 2;
+        }
+        else if (move.category.equals("Spec")) {
+            //special move
+            baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.spAtk / defendingPokemon.spDef)) / 50) + 2;
+        }
+        else {
+            //Status move
+            baseDamage = 0;
+        }
+
+        //STAB - Same-Type Attack Bonus. If the pokemon's and moves type are the same, the move does 1.5x damage
+        if (move.type.equals(attackingPokemon.type.get(0)) || move.type.equals(attackingPokemon.type.get(1))) {
+            baseDamage *= 1.5;
+        }
 
         //Modifiers:
-
+        //System.out.println("The damage is: " + baseDamage);
         //Math.floor(baseDamage)
         return (int) Math.floor(baseDamage);
     }
@@ -268,34 +290,34 @@ public class pokemonBattle {
     }
 
     //decides which final message to print when the winner has been decided
-    public static void matchEnd(Pokemon userPokemon) {
+    public static void matchEnd(Trainer user, Trainer comp) {
 
-        if (userPokemon.hasFainted) {
-            playerLost();
+        if (user.outOfPokemon) {
+            playerLost(user.prizeMoney);
         } else {
-            cynthiaLost();
+            cynthiaLost(comp.prizeMoney);
         }
     }
 
     //prints if the player defeated Cynthia
-    public static void cynthiaLost() {
+    public static void cynthiaLost(int prizeMoney) {
         //payout = level of last pokemon in opponent's party * base (Champion $200) https://bulbapedia.bulbagarden.net/wiki/Prize_money
         System.out.println();
         System.out.println("You have defeated Champion Cynthia");
         System.out.println("...Just a few minutes ago, you were the most powerful challenger.");
         System.out.println("And just now, you became the most powerful of all the Trainers.");
         System.out.println("You are now our newest Champion!");
-        System.out.println("You got $10,000 for winning!");
+        System.out.println("You got $" + prizeMoney + "for winning!");
         System.out.println();
     }
 
 
     //prints if the player lost to the opponent
-    public static void playerLost() {
+    public static void playerLost(int prizeMoney) {
         //Lost money = player's highest pokemon lvl * base (120 at 8 badges) https://bulbapedia.bulbagarden.net/wiki/Black_out
         System.out.println();
         System.out.println("You are out of usable Pokemon!");
-        System.out.println("You paid out $6,000 to the winner.");
+        System.out.println("You paid out $" + prizeMoney + " to the winner.");
         System.out.println("... ... ... ...");
         System.out.println("You blacked out!");
         System.out.println();
