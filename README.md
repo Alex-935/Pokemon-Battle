@@ -1,4 +1,5 @@
 ## Pokemon Battle Program
 
  - Added Dynamic Battle Screen
-<img width="709" height="571" alt="pokemonBattle dynamic battle screen" src="https://github.com/user-attachments/assets/70775301-aabe-4eae-9057-52825f575ffe" />
+
+<img width="816" height="538" alt="pokemonBattle dynamic battle screen" src="https://github.com/user-attachments/assets/54e21837-3892-465b-9f7e-162c6d2b1bf5" />
