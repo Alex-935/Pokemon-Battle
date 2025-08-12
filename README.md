@@ -20,6 +20,8 @@
   
 <img width="944" height="574" alt="pokemonBattle Choose Pokemon" src="https://github.com/user-attachments/assets/ccc0091c-e06a-4cef-9e9d-45e154d2425c" />
 
+ - All user inputs validated
+
 <img width="810" height="416" alt="pokemonBattle Validation on move selection" src="https://github.com/user-attachments/assets/1a6a8096-ce4b-42de-b5b9-0f934a576295" />
 
   - Get a different victory message based on your opponent
