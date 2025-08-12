@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class pokemonBattle {
 
@@ -47,19 +48,40 @@ public class pokemonBattle {
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 """;
                 
+        //Create Scanner
+        Scanner scanner = new Scanner(System.in);
+        boolean accepted = false;//used to confirm move selection
+        String moveSelection = "";//stored value of move selected by user
+
+        //UI output
         System.out.println("*****************************************");
         System.out.println(" Welcome to the Pokemon Battle Simulator");
         System.out.println("*****************************************");
         //System.out.println("");
         System.out.println(battleScreen(userPokemon, compPokemon));
 
-        //test get moves
-        System.out.println(userPokemon.moves.get(0).name);
-        System.out.println(userPokemon.moves.get(1).name);
-        System.out.println(compPokemon.moves.get(2).name);
-        System.out.println(userPokemon.moves.get(3).name);
+        System.out.println(userPokemon.name + " has the following moves: ");
+        System.out.println("1. " + userPokemon.moves.get(0).name);
+        System.out.println("2. " + userPokemon.moves.get(1).name);
+        System.out.println("3. " + userPokemon.moves.get(2).name);
+        System.out.println("4. " + userPokemon.moves.get(3).name);
 
         
+        while (!accepted) { 
+
+            System.out.print("Please enter the number of the move you want to use: ");
+            moveSelection = scanner.nextLine();
+
+            if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {
+                
+                accepted = true;
+            }
+        }
+        
+        
+        System.out.println(userPokemon.moves.get(Integer.parseInt(moveSelection) - 1).name);
+
+        scanner.close();
     }
 
     public static String battleScreen(Pokemon userPokemon, Pokemon compPokemon) {
@@ -80,6 +102,8 @@ public class pokemonBattle {
                      userPokemon.name, userPokemon.level, userPokemon.currentHp, userPokemon.hp);
     //compPokemon.gender, userPokemon.gender,
     }
+
+    
 
 
 
