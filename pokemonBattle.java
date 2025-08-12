@@ -71,24 +71,26 @@ public class pokemonBattle {
         System.out.println("3. " + userPokemon.moves.get(2).name);
         System.out.println("4. " + userPokemon.moves.get(3).name);
 
-        
+        //Asks the user to enter which move they want to use until they give an acceptable answer
         while (!accepted) { 
 
             System.out.print("Please enter the number of the move you want to use: ");
             moveSelection = scanner.nextLine();
 
-            if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {
-                
+            if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {  
                 accepted = true;
             }
         }
         
+        //user choses which move they want to use
         userMove = userPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
+        //Perorm both players attacks and print the result
         battleSequence(userPokemon, userMove, compPokemon);
-        System.out.println(battleScreen(userPokemon, compPokemon));
 
+        //Displays match outcome
 
+        matchEnd(userPokemon);
 
         scanner.close();
     }
@@ -127,7 +129,7 @@ public class pokemonBattle {
         return (int) Math.floor(baseDamage);
     }
 
-    public static void battleSequence(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon) {
+    public static void battleAttack(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon) {
 
         //prints the name of the move the user selected
         System.out.println(atkPokemon.name + " used "+ atkMove.name + "!");
@@ -136,6 +138,115 @@ public class pokemonBattle {
         //Deal damage
         defPokemon.currentHp -= damage;
     }
+
+    
+    public static void battleTurn(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon, Boolean flipDisplay) {
+        //player's move
+        battleAttack(atkPokemon, atkMove, defPokemon);
+        faintedCheck(defPokemon);
+        //post-move result
+        if (flipDisplay) {
+            System.out.println(battleScreen(atkPokemon, defPokemon));
+        } else {
+            System.out.println(battleScreen(defPokemon, atkPokemon));
+        }
+
+        // if the defending pokemon has fainted
+        if (defPokemon.hasFainted) {
+            if (flipDisplay) {
+                System.out.println("The foe's " + defPokemon.name + " fainted!");
+            } else {
+                System.out.println(defPokemon.name + " fainted!");
+            }
+            
+        } //if the defending pokemon lives, he attacks
+        else {
+            battleAttack(defPokemon, atkMove, atkPokemon);
+            faintedCheck(atkPokemon);
+        };
+    }
+
+    public static void faintedCheck(Pokemon defPokemon) {
+        
+        if (defPokemon.currentHp <= 0) {
+            defPokemon.currentHp = 0;//sets hp to 0 so it's not displaying a negative value
+            defPokemon.hasFainted = true;
+        }
+    }
+
+    public static void battleSequence(Pokemon userPokemon, Move userMove, Pokemon compPokemon) {
+
+        //if user's pokemon is faster
+        if (userPokemon.spd > compPokemon.spd) {
+
+            //player's attck
+            battleTurn(userPokemon, userMove, compPokemon, true);
+
+            //computer's attack, only if the computer's pokemon survived the last attack
+            if (userPokemon.hasFainted) {
+                System.out.println(battleScreen(userPokemon, compPokemon));
+                System.out.println(userPokemon.name + " fainted!");
+            };
+             
+        } 
+        //if computer's pokemon is faster
+        else if (userPokemon.spd < compPokemon.spd) {
+
+            //computer's attck
+            battleTurn(compPokemon, userMove, userPokemon, false);
+
+            //player's attack, only if the player's pokemon survived the last attack
+            if (compPokemon.hasFainted) {
+                System.out.println(battleScreen(userPokemon, compPokemon));
+                System.out.println("The foe's " + compPokemon.name + " fainted!");
+            };
+            
+        }
+        //speed tie, random who goes first
+        else {
+
+            //player's attck
+            battleTurn(userPokemon, userMove, compPokemon, true);
+
+            //computer's attack, only if the computer's pokemon survived the last attack
+            if (userPokemon.hasFainted) {
+                System.out.println(battleScreen(userPokemon, compPokemon));
+                System.out.println(userPokemon.name + " fainted!");
+            };
+        }   
+    }
+
+    public static void matchEnd(Pokemon userPokemon) {
+
+        if (userPokemon.hasFainted) {
+            playerLost();
+        } else {
+            cynthiaLost();
+        }
+    }
+
+    public static void cynthiaLost() {
+        //payout = level of last pokemon in opponent's party * base (Champion $200) https://bulbapedia.bulbagarden.net/wiki/Prize_money
+        System.out.println();
+        System.out.println("You have defeated Champion Cynthia");
+        System.out.println("...Just a few minutes ago, you were the most powerful challenger.");
+        System.out.println("And just now, you became the most powerful of all the Trainers.");
+        System.out.println("You are now our newest Champion!");
+        System.out.println("You got $10,000 for winning!");
+        System.out.println();
+    }
+
+    public static void playerLost() {
+        //Lost money = player's highest pokemon lvl * base (120 at 8 badges) https://bulbapedia.bulbagarden.net/wiki/Black_out
+        System.out.println();
+        System.out.println("You are out of usable Pokemon!");
+        System.out.println("You paid out $6,000 to the winner.");
+        System.out.println("... ... ... ...");
+        System.out.println("You blacked out!");
+        System.out.println();
+    }
+
+
 
 
 }

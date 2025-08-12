@@ -16,11 +16,7 @@ public class Pokemon {
     int spDef;
     int spd;
     int currentHp;
-
-    //class of Pokemon's moves
-    //Move[] moves;
-    //ArrayList<Move> moves;
-    //ArrayList<String> type, ArrayList<Move> moves
+    boolean hasFainted;
 
     //Constructor
     Pokemon(String name, int level, ArrayList<String> type, ArrayList<Move> moves, int hp, int atk, int def,
@@ -38,6 +34,7 @@ public class Pokemon {
         this.spDef = spDef;
         this.spd = spd;
         this.currentHp = hp;
+        this.hasFainted = false;
         
         // Also: Accuracy and Evasion, STAB, Natures, Ivs, Evs, Megas/DM/Terra/Z-Moves?
         //Stat calcs
