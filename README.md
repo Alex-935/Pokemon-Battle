@@ -27,3 +27,7 @@
  - Battle will loop until a Pokemon faints
 
 <img width="879" height="430" alt="pokemonBattle Loops through" src="https://github.com/user-attachments/assets/26e5dc75-ab45-4cc8-acdf-957452533a5c" />
+
+ - Uses Random to select the computer's moves and resolve speed ties (when both Pokemon have the same speed stat):
+   
+<img width="1105" height="730" alt="pokemonBattle Speed Ties" src="https://github.com/user-attachments/assets/46cba1d2-0686-4120-877c-7a397dd5eceb" />
