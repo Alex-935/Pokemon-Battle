@@ -66,3 +66,8 @@
 <img width="736" height="441" alt="pokemon randomisedDamage#" src="https://github.com/user-attachments/assets/87bde0e1-68eb-46fd-82c9-a745e0ae1d70" />
 
 <img width="695" height="304" alt="pokemonBattle Attack accuracy" src="https://github.com/user-attachments/assets/b8fd2a53-2b4a-4fdb-b6a5-e22d5e3b9847" />
+
+- Added move priority. Metagross is slower than Garchomp, but Bullet Punch's priority allows Metagross to attack first.
+
+<img width="615" height="353" alt="pokemon Battle speed priority" src="https://github.com/user-attachments/assets/a22548ba-67ee-4dda-8068-a46527adbce0" />
+
