@@ -58,8 +58,11 @@
       - STAB - Same Type Attack Bonus: Attacks deal 1.5x damage is the Pokemon and move are of the same type.
       - Phys/Spec split uses Atk & Def/ SpAtk & SpDef to calculate move damage.
       - Randomised Damage between 0.85x and 1x overall damage
+      - Attacks have a chance to miss based off the attack's accuracy
 
    
 <img width="1339" height="952" alt="pokemonBattle stab and psysSpec" src="https://github.com/user-attachments/assets/e5f7124e-ee44-45cb-ba36-12b3c78702b6" />
 
 <img width="736" height="441" alt="pokemon randomisedDamage#" src="https://github.com/user-attachments/assets/87bde0e1-68eb-46fd-82c9-a745e0ae1d70" />
+
+<img width="695" height="304" alt="pokemonBattle Attack accuracy" src="https://github.com/user-attachments/assets/b8fd2a53-2b4a-4fdb-b6a5-e22d5e3b9847" />
