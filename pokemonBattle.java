@@ -145,6 +145,7 @@ public class pokemonBattle {
                     accepted = true;
                 }
             }
+            System.out.println();
             
             //user choses which move they want to use
             userMove = user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1);
@@ -275,6 +276,12 @@ public class pokemonBattle {
 
         //Adds randomly fluctuating battle damage
         baseDamage *= atkDmgRand.nextDouble(0.85, 1.0000000000000001);
+
+        //critical hits
+        if (atkDmgRand.nextInt(1, 17) == 1) {
+            baseDamage *= 1.5;//Gen 6 onwards formula
+            System.out.println("A critical hit!");
+        }
 
         //Modifiers:
         //System.out.println("The damage is: " + baseDamage);
