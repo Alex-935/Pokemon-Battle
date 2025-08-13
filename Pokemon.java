@@ -119,10 +119,6 @@ public class Pokemon {
                         double multiplier = Double.parseDouble(this.weaknesses.get(k)) * Double.parseDouble(weaknessMultipliers.get(j + 1).get(k));
                         this.weaknesses.set(k, Double.toString(multiplier));
                     }
-
-                    //System.out.println("Test: " + weaknessMultipliers.get(j + 1));
-                    //this.weaknesses = weaknessMultipliers.get(j + 1);
-                    //System.out.println(this.weaknesses);
                 }   
             }  
         }

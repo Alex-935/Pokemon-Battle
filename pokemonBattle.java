@@ -98,7 +98,7 @@ public class pokemonBattle {
             System.out.print("Please select the number of the Pokemon you'd like to use: ");
             choice = scanner.nextLine();
 
-            if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4")) {  
+            if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4") || choice.equals("5")) {  
                 accepted = true;
             }
         }
@@ -239,6 +239,29 @@ public class pokemonBattle {
             //Status move
             baseDamage = 0;
         }
+
+        //type effectiveness
+        double multiplier = 1;//multiplier we are going to multiply the moves damage with
+        //list of pokemon types
+        ArrayList<String> typesList = new ArrayList<>(Arrays.asList("Normal", "Fire", "Water", "Electric", "Grass", 
+                "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"));
+        //for each pokemon type
+        for (int i = 0; i < 18; i++) {
+            if (move.type.equals(typesList.get(i))) {
+
+                multiplier = Double.parseDouble(defendingPokemon.weaknesses.get(i));
+                baseDamage *= multiplier;
+            }
+        }
+        //chooses relevant text to display when multiplier is not 1
+        if (multiplier == 2.0 || multiplier == 4.0) {
+            System.out.println("It's super effective!");
+        } else if (multiplier == 0.5 || multiplier == 0.25) {
+           System.out.println("It's not very effective..."); 
+        } else if (multiplier == 0.0) {
+            System.out.println("It doesn't effect " + defendingPokemon.name + "...");
+        }
+
 
         //STAB - Same-Type Attack Bonus. If the pokemon's and moves type are the same, the move does 1.5x damage
         if (move.type.equals(attackingPokemon.type.get(0)) || move.type.equals(attackingPokemon.type.get(1))) {
