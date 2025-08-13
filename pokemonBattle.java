@@ -8,7 +8,7 @@ public class pokemonBattle {
     public static void main(String[] args) {
 
         //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
-        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 200, 20);
+        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20);//guaranteed hit
         Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30);
         Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
         Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10);
@@ -104,9 +104,6 @@ public class pokemonBattle {
         }
         //set user's chosen pokemon to their pokemon
         user.acePokemon = pokeDex.get(Integer.parseInt(choice) - 1);
-
-        System.out.println(user.acePokemon.weaknesses);
-
 
         //Get the trainer the user would like to face
         trainerSelection(trainers);
@@ -227,6 +224,14 @@ public class pokemonBattle {
         //Damage = (((((Level, 0.4 + 2), Base Power, (Attack/Defense)) / 50) + 2), Modifiers), and Random Number.
         double baseDamage;
 
+        //Accuracy: 
+        Random atkDmgRand = new Random();
+        int accuracy = atkDmgRand.nextInt(1, 101);
+        if (move.accuracy < accuracy) {
+            System.out.println(attackingPokemon.name + "'s attack missed!");
+            return 0;
+        }
+
         if (move.category.equals("Phys")) {
             //physical move
             baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.atk / defendingPokemon.def)) / 50) + 2;
@@ -269,7 +274,6 @@ public class pokemonBattle {
         }
 
         //Adds randomly fluctuating battle damage
-        Random atkDmgRand = new Random();
         baseDamage *= atkDmgRand.nextDouble(0.85, 1.0000000000000001);
 
         //Modifiers:
