@@ -1,10 +1,25 @@
 ## Pokemon Battle Program
 
+- Created using Object-Oriented Program
+- Was created by myself without any help or external programming resources (only referenced material was the official Pokemon stats, move stats, diologue and calculations)
+- Main Features:
+  - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
+  - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
+  - Advances Damage Calculation
+     - Actual calculations use the official damage formula
+     - Move Accuracy
+     - Move priority (such as Extreme Speed having +2 priority)
+     - STAB - Same-Type Attack Bonus
+     - Critical Hits
+     - Randomly fluctuating damage 
+
+#Features in more detail
+
  - UI uses the same text as the official games. Layout is as close as I can ~~neatly~~ get it inside the terminal:
    
 <img width="815" height="455" alt="pokemonBattle welcome message" src="https://github.com/user-attachments/assets/1989b7a2-32a0-4a91-853f-1ec00ea173eb" />
 
- - OOP used to create Pokemon and Moves
+ - OOP used to create Pokemon, Moves and Trainers
 
  <img width="804" height="229" alt="pokemonBattle oop" src="https://github.com/user-attachments/assets/a9a36cf9-f90c-4356-8f78-2bf2acc0c2bf" />
 
