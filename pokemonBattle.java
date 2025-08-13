@@ -241,7 +241,10 @@ public class pokemonBattle {
         if (move.type.equals(attackingPokemon.type.get(0)) || move.type.equals(attackingPokemon.type.get(1))) {
             baseDamage *= 1.5;
         }
-
+        System.out.println(baseDamage);
+        Random atkDmgRand = new Random();
+        baseDamage *= atkDmgRand.nextDouble(0.85, 1.0000000000000001);
+        System.out.println(baseDamage);
         //Modifiers:
         //System.out.println("The damage is: " + baseDamage);
         //Math.floor(baseDamage)
