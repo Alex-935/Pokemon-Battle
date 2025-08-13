@@ -8,6 +8,11 @@
 
  <img width="804" height="229" alt="pokemonBattle oop" src="https://github.com/user-attachments/assets/a9a36cf9-f90c-4356-8f78-2bf2acc0c2bf" />
 
+ - Generates Weakness Chart for both mono and dual-type Pokemon
+
+   <img width="1881" height="1142" alt="pokemonBattle typeChart" src="https://github.com/user-attachments/assets/ceb40b2b-16a1-4bd5-a8ea-dcd03670867c" />
+
+
  - Added Dynamic Battle Screen
  
 <img width="816" height="538" alt="pokemonBattle dynamic battle screen" src="https://github.com/user-attachments/assets/54e21837-3892-465b-9f7e-162c6d2b1bf5" />
