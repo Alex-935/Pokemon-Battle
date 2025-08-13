@@ -13,7 +13,7 @@
      - STAB - Same-Type Attack Bonus
      - Critical Hits
      - Randomly fluctuating damage 
-
+  - Custom victory message based on which trainer you beat (or a loss message if you fail, but hopefully not :) )
 
 
 # Features in more detail
