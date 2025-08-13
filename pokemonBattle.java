@@ -130,10 +130,10 @@ public class pokemonBattle {
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
         while (!user.acePokemon.hasFainted && !comp.acePokemon.hasFainted) {
 
-            //print out user's pokemon's moves and a number to select them with
+            //print out user's pokemon's moves and a number to select them with, alongside the remaining pp
             System.out.println("What will " + user.acePokemon.name + " do?");
             for (int i = 0; i < 4; i++) {
-                System.out.println((i + 1) + ". " + user.acePokemon.moves.get(i).name);
+                System.out.println((i + 1) + ". " + user.acePokemon.moves.get(i).name + "  PP: " + user.acePokemon.moves.get(i).currentPP + "/" + user.acePokemon.moves.get(i).pp);
             }
 
             //needs to be reset every iteration of while loop
@@ -144,8 +144,19 @@ public class pokemonBattle {
                 System.out.print("Please enter the number of the move you want to use: ");
                 moveSelection = scanner.nextLine();
 
+                //check that the user has entered the number of a move
                 if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {  
                     accepted = true;
+
+                    //check that the move still has pp
+                    if (user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP == 0) {
+                        System.out.println("You don't have enough PP to use that move");
+                        accepted = false;
+                    }
+                    else{
+                        //if there is enough pp, reduce the remaining pp by 1
+                        user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP -= 1;
+                    }
                 }
             }
             System.out.println();
