@@ -2,6 +2,7 @@
 
 - Created using Object-Oriented Program
 - Was created by myself without any help or external programming resources (only referenced material was the official Pokemon stats, move stats, diologue and calculations)
+  
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
