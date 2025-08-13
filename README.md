@@ -2,7 +2,7 @@
 
 - Created using Object-Oriented Program
 - Was created by myself without any help or external programming resources (only referenced material was the official Pokemon stats, move stats, diologue and calculations)
-- Written in Java in VS Code
+- Written in Java using VS Code
   
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
