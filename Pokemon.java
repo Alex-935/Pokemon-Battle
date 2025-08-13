@@ -49,25 +49,25 @@ public class Pokemon {
         ArrayList<String> typesList = new ArrayList<>(Arrays.asList("Normal", "Fire", "Water", "Electric", "Grass", 
                 "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"));
 
-        //                If i'm attacked by                                      Nor  Fir  Wat Elec Gra  Ice  Fig  Poi  Gro  Fly  Psy  Bug  Roc  Gho  Gra  Dar  Ste  Fai
-        ArrayList<String> normalMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "1", "1", "1"));
-        ArrayList<String> fireMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> waterMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> electricMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> grassMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));;
-        ArrayList<String> iceMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> fightingMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> poisonMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> groundMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> flyingMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> psychicMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> bugMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> rockMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> ghostMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> dragonMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> darkMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> steelMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        ArrayList<String> fairyMultipliers = new ArrayList<>(Arrays.asList("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
+        //                If i'm attacked by                                       Nor    Fir     Wat     Elec    Gra     Ice     Fig    Poi     Gro    Fly     Psy     Bug     Roc     Gho     Dra     Dar    Ste    Fai
+        ArrayList<String> normalMultipliers = new ArrayList<>(Arrays.asList(  "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",   "0.5",   "0",    "1",    "1",  "0.5",   "1"));//Normal
+        ArrayList<String> fireMultipliers = new ArrayList<>(Arrays.asList(    "1",  "0.5",  "0.5",   "1",    "2",    "2",    "1",   "1",    "1",   "1",    "1",    "2",   "0.5",   "1",   "0.5",   "1",   "2",    "1"));//Fire
+        ArrayList<String> waterMultipliers = new ArrayList<>(Arrays.asList(   "1",   "2",   "0.5",   "1",   "0.5",   "1",    "1",   "1",    "2",   "1",    "1",    "1",    "2",    "1",   "0.5",   "1",   "1",    "1"));//Water
+        ArrayList<String> electricMultipliers = new ArrayList<>(Arrays.asList("1",   "1",    "2",   "0.5",  "0.5",   "1",    "1",   "1",    "0",   "2",    "1",    "1",    "1",    "1",   "0.5",   "1",   "1",    "1"));//Electric
+        ArrayList<String> grassMultipliers = new ArrayList<>(Arrays.asList(   "1",  "0.5",   "2",    "1",   "0.5",   "1",    "1",  "0.5",   "2",  "0.5",   "1",   "0.5",   "2",    "1",   "0.5",   "1",  "0.5",   "1"));//Grass
+        ArrayList<String> iceMultipliers = new ArrayList<>(Arrays.asList(     "1",  "0.5",  "0.5",   "1",    "2",   "0.5",   "1",   "1",    "2",   "2",    "1",    "1",    "1",    "1",    "2",    "1",  "0.5",   "1"));//Ice
+        ArrayList<String> fightingMultipliers = new ArrayList<>(Arrays.asList("2",   "1",    "1",    "1",    "1",    "2",    "1",  "0.5",   "1",  "0.5",  "0.5",  "0.5",   "2",    "1",    "1",    "2",   "2",   "0.5"));//Fightning
+        ArrayList<String> poisonMultipliers = new ArrayList<>(Arrays.asList(  "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "2"));//Poison
+        ArrayList<String> groundMultipliers = new ArrayList<>(Arrays.asList(  "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Ground
+        ArrayList<String> flyingMultipliers = new ArrayList<>(Arrays.asList(  "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Flying
+        ArrayList<String> psychicMultipliers = new ArrayList<>(Arrays.asList( "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Psychic
+        ArrayList<String> bugMultipliers = new ArrayList<>(Arrays.asList(     "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Bug
+        ArrayList<String> rockMultipliers = new ArrayList<>(Arrays.asList(    "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Rock
+        ArrayList<String> ghostMultipliers = new ArrayList<>(Arrays.asList(   "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Ghost
+        ArrayList<String> dragonMultipliers = new ArrayList<>(Arrays.asList(  "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Dragon
+        ArrayList<String> darkMultipliers = new ArrayList<>(Arrays.asList(    "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Dark
+        ArrayList<String> steelMultipliers = new ArrayList<>(Arrays.asList(   "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Steel
+        ArrayList<String> fairyMultipliers = new ArrayList<>(Arrays.asList(   "1",   "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1",   "1",    "1",    "1",    "1",    "1",    "1",    "1",   "1",    "1"));//Fairy
         
 
         ArrayList<ArrayList<String>> fireType = new ArrayList<>(Arrays.asList(typesList, fireMultipliers));
