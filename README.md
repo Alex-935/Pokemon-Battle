@@ -14,6 +14,8 @@
      - Critical Hits
      - Randomly fluctuating damage 
 
+
+
 # Features in more detail
 
  - UI uses the same text as the official games. Layout is as close as I can ~~neatly~~ get it inside the terminal:
