@@ -1,3 +1,5 @@
+
+
 public class Move {
     
     //attributes
@@ -8,16 +10,18 @@ public class Move {
     int accuracy;//likelihood aa move hits
     int pp;//number of times a move can be used
     int currentPP;
+    int priority;
 
     //constructor
     Move(String name, String type, String category,
-        int power, int accuracy, int pp) {
+        int power, int accuracy, int pp, int priority) {
 
         this.name = name;
         this.type = type;
         this.category = category;
         this.power = power;
         this.accuracy = accuracy;
+        this.priority = priority;
         this.pp = pp;
         this.currentPP = pp;
         

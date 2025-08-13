@@ -8,23 +8,23 @@ public class pokemonBattle {
     public static void main(String[] args) {
 
         //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
-        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20);//guaranteed hit
-        Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30);
-        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
-        Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10);
-        Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5);
-        Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10);
-        Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5);
-        Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15);
-        Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5);
-        Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10);
-        Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15);
-        Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35);
-        Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10);
-        Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10);
-        Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5);
-        Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15);
-        Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15);
+        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20, 0);//guaranteed hit
+        Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30,1);
+        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100,15, 1);
+        Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10, 0);
+        Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5, 0);
+        Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10, 0);
+        Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5, 2);
+        Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15, 0);
+        Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, 0);
+        Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, 0);
+        Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, 0);
+        Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35, 0);
+        Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, 0);
+        Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, 0);
+        Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, 0);
+        Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, 0);
+        Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15, 0);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php   Sets: https://calc.pokemonshowdown.com/ 
         Pokemon cynthiasGarchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(outrage, earthquake, stoneEdge, gigaImpact)),  183, 150, 115, 100, 105, 122);
@@ -332,68 +332,74 @@ public class pokemonBattle {
     //calculates battle order based on the pokemons speed. Also used to ensure the sys.outs are displayed in the correct order and under the right conditions.
     public static void battleSequence(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove, int speedTie) {
 
-        //if user's pokemon is faster
-        if (userPokemon.spd > compPokemon.spd) {
-
-            //player's attack
-            battleTurn(userPokemon, userMove, compPokemon, compMove, true);
-
-            //after the computer's attack, tells the user the result of the battle
-            if (userPokemon.hasFainted) {
-                System.out.println(battleScreen(userPokemon, compPokemon));
-                System.out.println(userPokemon.name + " fainted!");
-            } else if (!compPokemon.hasFainted) {
-                System.out.println(battleScreen(userPokemon, compPokemon));
-            };
-             
-        } 
-        //if computer's pokemon is faster
-        else if (userPokemon.spd < compPokemon.spd) {
-
-            //computer's attck
-            battleTurn(compPokemon, compMove, userPokemon, userMove, false);
-
-            ////after the players's attack, tells the user the result of the battle
-            if (compPokemon.hasFainted) {
-                System.out.println(battleScreen(userPokemon, compPokemon));
-                System.out.println("The foe's " + compPokemon.name + " fainted!");
-            } else if (!userPokemon.hasFainted) {
-                System.out.println(battleScreen(userPokemon, compPokemon));
-            };
+        //if the users move has priority over the computers
+        if (userMove.priority > compMove.priority) {
             
-        }
-        //speed tie, random who goes first
+            userAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+        } 
+        //if the computers move has priority over the users
+        else if (userMove.priority < compMove.priority) {
+            compAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+        } 
+        //if both moves have the same priority
         else {
 
-            //if the random number for deciding speed rolled 0, the user moves first
-            if (speedTie == 0) {
-                //player's attack
-                battleTurn(userPokemon, userMove, compPokemon, compMove, true);
+            //if user's pokemon is faster
+            if (userPokemon.spd > compPokemon.spd) {
 
-                //after the computer's attack, tells the user the result of the battle
-                if (userPokemon.hasFainted) {
-                    System.out.println(battleScreen(userPokemon, compPokemon));
-                    System.out.println(userPokemon.name + " fainted!");
-                } else {
-                    System.out.println(battleScreen(userPokemon, compPokemon));
-                }
+                userAttacksFirst(userPokemon, userMove, compPokemon, compMove);             
+            } 
+            //if computer's pokemon is faster
+            else if (userPokemon.spd < compPokemon.spd) {
+
+                compAttacksFirst(userPokemon, userMove, compPokemon, compMove);            
             }
-            //if the random number for deciding speed rolled 1, the user computer first
+            //speed tie, random who goes first
             else {
 
-                //computer's attck
-                battleTurn(compPokemon, compMove, userPokemon, userMove, false);
+                //if the random number for deciding speed rolled 0, the user moves first
+                if (speedTie == 0) {
 
-                ////after the players's attack, tells the user the result of the battle
-                if (compPokemon.hasFainted) {
-                    System.out.println(battleScreen(userPokemon, compPokemon));
-                    System.out.println("The foe's " + compPokemon.name + " fainted!");
-                } else if (!userPokemon.hasFainted) {
-                    System.out.println(battleScreen(userPokemon, compPokemon));
+                    //player's attack first
+                    userAttacksFirst(userPokemon, userMove, compPokemon, compMove);
                 }
-            }  
+                //if the random number for deciding speed rolled 1, the user computer first
+                else {
+                    //computer attacks first
+                    compAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+                }  
+            }
         }   
     }
+
+    public static void userAttacksFirst(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove) {
+
+        //player's attack
+        battleTurn(userPokemon, userMove, compPokemon, compMove, true);
+
+        //after the computer's attack, tells the user the result of the battle
+        if (userPokemon.hasFainted) {
+            System.out.println(battleScreen(userPokemon, compPokemon));
+            System.out.println(userPokemon.name + " fainted!");
+        } else if (!compPokemon.hasFainted) {
+            System.out.println(battleScreen(userPokemon, compPokemon));
+        }
+    }
+
+    public static void compAttacksFirst(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove) {
+
+        //computer's attck
+        battleTurn(compPokemon, compMove, userPokemon, userMove, false);
+
+        ////after the players's attack, tells the user the result of the battle
+        if (compPokemon.hasFainted) {
+            System.out.println(battleScreen(userPokemon, compPokemon));
+            System.out.println("The foe's " + compPokemon.name + " fainted!");
+        } else if (!userPokemon.hasFainted) {
+            System.out.println(battleScreen(userPokemon, compPokemon));
+        }
+    }
+
 
     //decides which final message to print when the winner has been decided
     public static void matchEnd(Trainer user, Trainer comp) {
