@@ -127,13 +127,11 @@ public class pokemonBattle {
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
         while (!user.acePokemon.hasFainted && !comp.acePokemon.hasFainted) {
 
-            //turn this into a for loop
-            //print out user's pokemon's moves
+            //print out user's pokemon's moves and a number to select them with
             System.out.println("What will " + user.acePokemon.name + " do?");
-            System.out.println("1. " + user.acePokemon.moves.get(0).name);
-            System.out.println("2. " + user.acePokemon.moves.get(1).name);
-            System.out.println("3. " + user.acePokemon.moves.get(2).name);
-            System.out.println("4. " + user.acePokemon.moves.get(3).name);
+            for (int i = 0; i < 4; i++) {
+                System.out.println((i + 1) + ". " + user.acePokemon.moves.get(i).name);
+            }
 
             //needs to be reset every iteration of while loop
             accepted = false;
@@ -152,7 +150,7 @@ public class pokemonBattle {
             userMove = user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
             //computerMove
-            compMove = user.acePokemon.moves.get(random.nextInt(1, 5) - 1);
+            compMove = comp.acePokemon.moves.get(random.nextInt(1, 5) - 1);
 
             speedTie = random.nextInt(0, 2);//used for determining which pokemon goes first in the event their speeds are the same
             //Perorm both players attacks and print the result
@@ -174,7 +172,7 @@ public class pokemonBattle {
         System.out.println(" Welcome to the Pokemon Battle Simulator");
         System.out.println("*****************************************");
 
-        //turn this into a for loop
+        //Outputs each of the Pokemon's names and a number to select them
         System.out.println("Which Pokemon would you like to use: ");
         for (int i = 0; i < pokeDex.size(); i++) {
             System.out.println((i + 1) + ". " + pokeDex.get(i).name);
@@ -183,7 +181,7 @@ public class pokemonBattle {
 
     public static void trainerSelection(ArrayList<Trainer> trainers) {
 
-        //turn this into a for loop
+        //Outputs each of the trainer's names and a number to select them
         System.out.println("\nWhich Trainer would you like to face: ");
         for (int i = 0; i < trainers.size(); i++) {
             System.out.println((i + 1) + ". " + trainers.get(i).name);  
