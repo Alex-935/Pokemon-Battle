@@ -12,6 +12,11 @@
 
    <img width="1881" height="1142" alt="pokemonBattle typeChart" src="https://github.com/user-attachments/assets/ceb40b2b-16a1-4bd5-a8ea-dcd03670867c" />
 
+ - Type charts affect move damage, including immunities
+   
+
+<img width="698" height="473" alt="pokemonBattle Super Effective" src="https://github.com/user-attachments/assets/a113a038-7e40-4ba5-b8a0-76d418e366e7" />
+
 
  - Added Dynamic Battle Screen
  
