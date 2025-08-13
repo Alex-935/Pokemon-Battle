@@ -8,7 +8,7 @@ public class Pokemon {
     //char gender; Doesn't show in terminal
     int level;
     ArrayList<String> type;
-    ArrayList<String> weaknesses = new ArrayList<>(Arrays.asList("Fire"));
+    ArrayList<String> weaknesses;
     ArrayList<Move> moves;
     //Pokemon's Stats for battling
     int hp;
@@ -28,6 +28,7 @@ public class Pokemon {
         //this.gender = gender;// alt + 11 ♂. alt + 12 ♀
         this.level = level;
         this.type = type;
+        generateWeaknesses();//to generate weakness table
         this.moves = moves;
         this.hp = hp;
         this.atk = atk;
@@ -97,12 +98,33 @@ public class Pokemon {
                 grassMultipliers, iceMultipliers, fightingMultipliers, poisonMultipliers, groundMultipliers, flyingMultipliers, psychicMultipliers,
                 bugMultipliers, rockMultipliers, ghostMultipliers, dragonMultipliers, darkMultipliers, steelMultipliers, fairyMultipliers));
 
-        //for each pokemon type
+        //search the type array until the index matches the pokemon's first type
         for (int i = 0; i < 18; i++) {
-            if (weaknessMultipliers.get(0).get(i).equals(this.type.get(1))) {
-                System.out.println(weaknessMultipliers.get(0).get(i));
-            };
-            
+            if (weaknessMultipliers.get(0).get(i).equals(this.type.get(0))) {
+                //the Pokemon's defensive weakness multipliers are then set equal to the defensive weakness multipliers for that type
+                this.weaknesses = weaknessMultipliers.get(i + 1);
+            } 
+        }
+
+        //if the pokemon has a second type
+        if (!(this.type.get(1) == null)) 
+        {
+            //search the type array until the index matches the pokemon's second type
+            for (int j = 0; j < 18; j++) {
+                if (weaknessMultipliers.get(0).get(j).equals(this.type.get(1))) {
+
+                    //the Pokemon's defensive  weakness multipliers are then multiplied by the defensive multipliers of their second type
+                    //this gives that pokemon the defensive weaknesses for their dual-typing
+                    for (int k = 0; k < 18; k++) {
+                        double multiplier = Double.parseDouble(this.weaknesses.get(k)) * Double.parseDouble(weaknessMultipliers.get(j + 1).get(k));
+                        this.weaknesses.set(k, Double.toString(multiplier));
+                    }
+
+                    //System.out.println("Test: " + weaknessMultipliers.get(j + 1));
+                    //this.weaknesses = weaknessMultipliers.get(j + 1);
+                    //System.out.println(this.weaknesses);
+                }   
+            }  
         }
         //System.out.println(weaknessMultipliers);
     }
