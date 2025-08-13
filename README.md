@@ -2,19 +2,21 @@
 
 - Created using Object-Oriented Program
 - Was created by myself without any help or external programming resources (only referenced material was the official Pokemon stats, move stats, diologue and calculations)
+- Written in Java in VS Code
   
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
-  - Checks that a user has enough PP )Power Points) to use their chosen move
+  - Checks that a user has enough PP (Power Points) to use their chosen move
   - Advances Damage Calculation
      - Calculations use the official damage formula
      - Move Accuracy
-     - Move priority (such as Extreme Speed having +2 priority)
+     - Speed stat determines move order. In the event of a speed tie, the order is randomly decided.
+     - Move priority (such as Extreme Speed, having +2 priority, allows the user to go first regardless of speed stats)
      - STAB - Same-Type Attack Bonus
      - Critical Hits
      - Randomly fluctuating damage 
-  - Custom victory message based on which trainer you beat (or a loss message if you fail, but hopefully not :) )
+  - Custom victory message based on which trainer you beat (or a loss message if you fail, but hopefully not ;) )
 
 
 # Features in more detail
@@ -35,6 +37,10 @@
    
 
 <img width="698" height="473" alt="pokemonBattle Super Effective" src="https://github.com/user-attachments/assets/a113a038-7e40-4ba5-b8a0-76d418e366e7" />
+
+- Checks users have nough PP to use a certain move
+
+<img width="923" height="432" alt="pokemonBattle PP chech" src="https://github.com/user-attachments/assets/10ab64b8-4bcd-4f12-8631-7de77a6b9169" />
 
 
  - Added Dynamic Battle Screen
