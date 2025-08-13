@@ -89,6 +89,8 @@ public class pokemonBattle {
         int speedTie;//used for determining which pokemon goes first in the event their speeds are the same
 
 
+        user.acePokemon.generateWeaknesses();
+
         //Greets user and gets the pokemon the user would like to use
         pokemonSelection(pokeDex);
         accepted = false;
@@ -241,10 +243,11 @@ public class pokemonBattle {
         if (move.type.equals(attackingPokemon.type.get(0)) || move.type.equals(attackingPokemon.type.get(1))) {
             baseDamage *= 1.5;
         }
-        System.out.println(baseDamage);
+
+        //Adds randomly fluctuating battle damage
         Random atkDmgRand = new Random();
         baseDamage *= atkDmgRand.nextDouble(0.85, 1.0000000000000001);
-        System.out.println(baseDamage);
+
         //Modifiers:
         //System.out.println("The damage is: " + baseDamage);
         //Math.floor(baseDamage)
