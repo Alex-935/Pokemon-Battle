@@ -7,8 +7,9 @@ public class pokemonBattle {
 
     public static void main(String[] args) {
 
-        //Moves
+        //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
         Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 200, 20);
+        Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30);
         Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15);
         Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10);
         Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5);
@@ -16,25 +17,33 @@ public class pokemonBattle {
         Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5);
         Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15);
         Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5);
+        Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10);
+        Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15);
         Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35);
+        Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10);
         Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10);
         Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5);
         Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15);
+        Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php   Sets: https://calc.pokemonshowdown.com/ 
         Pokemon cynthiasGarchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(outrage, earthquake, stoneEdge, gigaImpact)),  183, 150, 115, 100, 105, 122);
+        Pokemon cyrusWeavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
+        Pokemon stevensMetagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon garchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
+        Pokemon metagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon rayquaza = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(dragonAscent, earthquake, outrage, extremeSpeed)), 165, 155, 95, 155, 95, 100);
         Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(metalClaw, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
         //Array of available Pokemon to choose from
-        ArrayList<Pokemon> pokeDex = new ArrayList<>(Arrays.asList(garchomp, rayquaza, weavile));
+        ArrayList<Pokemon> pokeDex = new ArrayList<>(Arrays.asList(garchomp, metagross, rayquaza, weavile));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
         Trainer user = new Trainer("user", rayquaza, 120);
         Trainer cynthia = new Trainer("Champion Cynthia", cynthiasGarchomp, 200);
-        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", weavile, 280);
-        //Array of available Pokemon to choose from
-        ArrayList<Trainer> trainers = new ArrayList<>(Arrays.asList(cynthia, cyrus));
+        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", cyrusWeavile, 280);
+        Trainer steven = new Trainer("Champion Steven", stevensMetagross, 200);
+        //Array of available Trainers to choose from
+        ArrayList<Trainer> trainers = new ArrayList<>(Arrays.asList(cynthia, cyrus, steven));
 
 
         String rayquazaAscii = """
@@ -81,14 +90,14 @@ public class pokemonBattle {
 
 
         //Greets user and gets the pokemon the user would like to use
-        pokemonSelection();
+        pokemonSelection(pokeDex);
         accepted = false;
         while (!accepted) { 
 
             System.out.print("Please select the number of the Pokemon you'd like to use: ");
             choice = scanner.nextLine();
 
-            if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {  
+            if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4")) {  
                 accepted = true;
             }
         }
@@ -97,14 +106,14 @@ public class pokemonBattle {
 
 
         //Get the trainer the user would like to face
-        trainerSelection();
+        trainerSelection(trainers);
         accepted = false;
         while (!accepted) { 
 
             System.out.print("Please select the number of the Trainer you would like to face: ");
             choice = scanner.nextLine();
 
-            if (choice.equals("1") || choice.equals("2")) {  
+            if (choice.equals("1") ||  choice.equals("2") || choice.equals("3")) {  
                 accepted = true;
             }
         }
@@ -118,6 +127,7 @@ public class pokemonBattle {
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
         while (!user.acePokemon.hasFainted && !comp.acePokemon.hasFainted) {
 
+            //turn this into a for loop
             //print out user's pokemon's moves
             System.out.println("What will " + user.acePokemon.name + " do?");
             System.out.println("1. " + user.acePokemon.moves.get(0).name);
@@ -157,24 +167,27 @@ public class pokemonBattle {
         scanner.close();
     }
 
-    public static void pokemonSelection() {
+    public static void pokemonSelection(ArrayList<Pokemon> pokeDex) {
 
         //Greeting Message
         System.out.println("*****************************************");
         System.out.println(" Welcome to the Pokemon Battle Simulator");
         System.out.println("*****************************************");
 
+        //turn this into a for loop
         System.out.println("Which Pokemon would you like to use: ");
-        System.out.println("1. Garchomp");
-        System.out.println("2. Rayquaza");
-        System.out.println("3. Weavile");
+        for (int i = 0; i < pokeDex.size(); i++) {
+            System.out.println((i + 1) + ". " + pokeDex.get(i).name);
+        }
     }
 
-    public static void trainerSelection() {
+    public static void trainerSelection(ArrayList<Trainer> trainers) {
 
+        //turn this into a for loop
         System.out.println("\nWhich Trainer would you like to face: ");
-        System.out.println("1. Cynthia");
-        System.out.println("2. Cyrus");
+        for (int i = 0; i < trainers.size(); i++) {
+            System.out.println((i + 1) + ". " + trainers.get(i).name);  
+        }
     }
 
     //displays message welcoming you when copde is first ran
@@ -360,6 +373,7 @@ public class pokemonBattle {
 
                 case "Champion Cynthia" -> {cynthiaLost(comp.prizeMoney);}
                 case "Team Galactic Boss Cyrus" -> {cyrusLost(comp.prizeMoney);}
+                case "Champion Steven" -> {stevenLost(comp.prizeMoney);}
                 default -> {System.out.println("Congratulations, you won");}
             }
         }
@@ -385,6 +399,18 @@ public class pokemonBattle {
         System.out.println("Not after all the sacrifices we've made to get this far!");
         System.out.println("What of my new world?!\nOf my new galaxy?!");
         System.out.println("Was this all a dream to be swept away by your reality?!");
+        System.out.println("You got $" + prizeMoney + " for winning!");
+        System.out.println();
+    }
+
+    public static void stevenLost(int prizeMoney) {
+        System.out.println();
+        System.out.println("You have defeated Champion Steven");
+        System.out.println("Come to think of it, ever since our paths first crossed in Granite Cave in Dewford,\nI had this feeling.");
+        System.out.println("I thought that you would eventually become champion.\nMy predictions usually come true.");
+        System.out.println("And where will you go from here?");
+        System.out.println("... ... ... ... ...\n... ... ... ... ...");
+        System.out.println("Fufufu, even I couldn't tell you that.");
         System.out.println("You got $" + prizeMoney + " for winning!");
         System.out.println();
     }
