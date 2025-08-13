@@ -7,7 +7,7 @@
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
   - Advances Damage Calculation
-     - Actual calculations use the official damage formula
+     - Calculations use the official damage formula
      - Move Accuracy
      - Move priority (such as Extreme Speed having +2 priority)
      - STAB - Same-Type Attack Bonus
