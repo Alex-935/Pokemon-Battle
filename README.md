@@ -6,6 +6,7 @@
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
+  - Checks that a user has enough PP )Power Points) to use their chosen move
   - Advances Damage Calculation
      - Calculations use the official damage formula
      - Move Accuracy
