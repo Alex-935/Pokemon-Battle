@@ -19,18 +19,21 @@ public class pokemonBattle {
         Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, 0);
         Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, 0);
         Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, 0);
+        Move judgement = new Move("Judgement", "Normal", "Spec", 100, 100, 10, 0);
         Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35, 0);
         Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, 0);
         Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, 0);
+        Move shadowBall = new Move("Shadow Ball", "Ghost", "Spec", 80, 100, 15, 0);
         Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, 0);
         Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, 0);
+        Move thunder = new Move("Thunder", "Electric", "Spec", 110, 70, 10, 0);
         Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15, 0);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php   Sets: https://calc.pokemonshowdown.com/ 
         Pokemon cynthiasGarchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(outrage, earthquake, stoneEdge, gigaImpact)),  183, 150, 115, 100, 105, 122);
         Pokemon cyrusWeavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
         Pokemon stevensMetagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
-        Pokemon arceus = new Pokemon("Arceus", 50, new ArrayList<>(Arrays.asList("Normal", null)), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 180, 125, 125, 125, 125, 125);
+        Pokemon arceus = new Pokemon("Arceus", 50, new ArrayList<>(Arrays.asList("Normal", null)), new ArrayList<>(Arrays.asList(judgement, shadowBall, thunder, extremeSpeed)), 180, 125, 125, 125, 125, 125);
         Pokemon garchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
         Pokemon metagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon rayquaza = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(dragonAscent, earthquake, outrage, extremeSpeed)), 165, 155, 95, 155, 95, 100);
