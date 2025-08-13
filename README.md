@@ -47,5 +47,6 @@
  - Includes damage multipliers such as STAB and the Physical/Special Move Split:
       - STAB - Same Type Attack Bonus: Attacks deal 1.5x damage is the Pokemon and move are of the same type.
       - Phys/Spec split uses Atk & Def/ SpAtk & SpDef to calculate move damage.
+
    
 <img width="1339" height="952" alt="pokemonBattle stab and psysSpec" src="https://github.com/user-attachments/assets/e5f7124e-ee44-45cb-ba36-12b3c78702b6" />
