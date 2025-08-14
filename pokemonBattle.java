@@ -9,41 +9,65 @@ public class pokemonBattle {
 
         //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
         Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20, 0);//guaranteed hit
+        Move airSlash = new Move("Air Slash", "Flying", "Spec", 75, 95, 15, 0);
+        Move auraSphere = new Move("Aura Sphere", "Fighting", "Spec", 80, 100, 20, 0);//guaranteed hit
+        Move blizzard = new Move("Blizzard", "Ice", "Spec", 110, 70,5, 0);
         Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30,1);
-        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100,15, 1);
+        Move closeCombat = new Move("Close Combat", "Fighting", "Phys", 120, 100,5, 0);
+        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100,15, 0);
+        Move darkPulse = new Move("Dark Pulse", "Dark", "Spec", 80, 100, 15, 0);
+        Move dazzlingGleam = new Move("Dazzling Gleam", "Fairy", "Spec", 80, 100, 10, 0);
         Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10, 0);
         Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5, 0);
         Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10, 0);
+        Move energyBall = new Move("Energy Ball", "Grass", "Spec", 90, 100, 10, 0);
         Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5, 2);
         Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15, 0);
         Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, 0);
         Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, 0);
+        Move hydroPump = new Move("Hydro Pump", "Water", "Spec", 110, 80,5, 0);
+        Move iceBeam = new Move("Ice Beam", "Ice", "Spec", 90, 100, 10, 0);
         Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, 0);
         Move judgement = new Move("Judgement", "Normal", "Spec", 100, 100, 10, 0);
         Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35, 0);
         Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, 0);
         Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, 0);
+        Move psychic = new Move("Psychic", "Psychic", "Spec", 90, 100, 10, 0);
+        Move scald = new Move("Scald", "Water", "Spec", 80, 100, 15, 0);
         Move shadowBall = new Move("Shadow Ball", "Ghost", "Spec", 80, 100, 15, 0);
+        Move sludgeBomb = new Move("Sludge Bomb", "Poison", "Spec", 90, 100, 10, 0);
         Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, 0);
+        Move suckerPunch = new Move("Sucker Punch", "Dark", "Phys", 80, 100, 5, 1);//had pover of 80 pre gen-7
         Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, 0);
         Move thunder = new Move("Thunder", "Electric", "Spec", 110, 70, 10, 0);
+        Move waterPulse = new Move("Water Pulse", "Water", "Spec", 60, 100, 20, 0);
         Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15, 0);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php   Sets: https://calc.pokemonshowdown.com/ 
+        Pokemon cynthiasSpiritomb = new Pokemon("Spiritomb", 50, new ArrayList<>(Arrays.asList("Ghost", "Dark")), new ArrayList<>(Arrays.asList(shadowBall, darkPulse, psychic, suckerPunch)),  110, 97, 113, 97, 113, 40);
+        Pokemon cynthiasRoserade = new Pokemon("Roserade", 50, new ArrayList<>(Arrays.asList("Grass", "Poison")), new ArrayList<>(Arrays.asList(dazzlingGleam, shadowBall, sludgeBomb, energyBall)),  120, 75, 70, 130, 110, 95);
+        Pokemon cynthiasTogekiss = new Pokemon("Togekiss", 50, new ArrayList<>(Arrays.asList("Fairy", "Flying")), new ArrayList<>(Arrays.asList(airSlash, dazzlingGleam, auraSphere, waterPulse)),  145, 55, 100, 125, 120, 85);
+        Pokemon cynthiasLucario = new Pokemon("Lucario", 50, new ArrayList<>(Arrays.asList("Fighting", "Steel")), new ArrayList<>(Arrays.asList(closeCombat, meteorMash, psychic, earthquake)),  130, 115, 75, 120, 75, 95);
+        Pokemon cynthiasMilotic = new Pokemon("Milotic", 50, new ArrayList<>(Arrays.asList("Water", null)), new ArrayList<>(Arrays.asList(hydroPump, blizzard, iceBeam, scald)),  155, 65, 84, 105, 130, 86);
         Pokemon cynthiasGarchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(outrage, earthquake, stoneEdge, gigaImpact)),  183, 150, 115, 100, 105, 122);
         Pokemon cyrusWeavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
         Pokemon stevensMetagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon arceus = new Pokemon("Arceus", 50, new ArrayList<>(Arrays.asList("Normal", null)), new ArrayList<>(Arrays.asList(judgement, shadowBall, thunder, extremeSpeed)), 180, 125, 125, 125, 125, 125);
         Pokemon garchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
+        Pokemon lucario = new Pokemon("Lucario", 50, new ArrayList<>(Arrays.asList("Fighting", "Steel")), new ArrayList<>(Arrays.asList(closeCombat, meteorMash, psychic, earthquake)),  130, 115, 75, 120, 75, 95);
         Pokemon metagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
+        Pokemon milotic = new Pokemon("Milotic", 50, new ArrayList<>(Arrays.asList("Water", null)), new ArrayList<>(Arrays.asList(hydroPump, blizzard, iceBeam, scald)),  155, 65, 84, 105, 130, 86);
         Pokemon rayquaza = new Pokemon("Rayquaza", 50, new ArrayList<>(Arrays.asList("Dragon", "Flying")), new ArrayList<>(Arrays.asList(dragonAscent, earthquake, outrage, extremeSpeed)), 165, 155, 95, 155, 95, 100);
+        Pokemon roserade = new Pokemon("Roserade", 50, new ArrayList<>(Arrays.asList("Grass", "Poison")), new ArrayList<>(Arrays.asList(dazzlingGleam, shadowBall, sludgeBomb, energyBall)),  120, 75, 70, 130, 110, 95);
+        Pokemon spiritomb = new Pokemon("Spiritomb", 50, new ArrayList<>(Arrays.asList("Ghost", "Dark")), new ArrayList<>(Arrays.asList(shadowBall, darkPulse, psychic, suckerPunch)),  110, 97, 113, 97, 113, 40);
+        Pokemon togekiss = new Pokemon("Togekiss", 50, new ArrayList<>(Arrays.asList("Fairy", "Flying")), new ArrayList<>(Arrays.asList(airSlash, dazzlingGleam, auraSphere, waterPulse)),  145, 55, 100, 125, 120, 85);
         Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(metalClaw, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
         //Array of available Pokemon to choose from
         ArrayList<Pokemon> pokeDex = new ArrayList<>(Arrays.asList(arceus, garchomp, metagross, rayquaza, weavile));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
-        Trainer user = new Trainer("user", new ArrayList<>(Arrays.asList(rayquaza)), rayquaza, 120);
-        Trainer cynthia = new Trainer("Champion Cynthia", new ArrayList<>(Arrays.asList(cynthiasGarchomp)), cynthiasGarchomp, 200);
+        Trainer user = new Trainer("user", new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, garchomp, arceus, rayquaza)), rayquaza, 120);
+        Trainer cynthia = new Trainer("Champion Cynthia", new ArrayList<>(Arrays.asList(cynthiasSpiritomb, cynthiasRoserade, cynthiasTogekiss, cynthiasLucario, cynthiasMilotic, cynthiasGarchomp)), cynthiasGarchomp, 200);
         Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", new ArrayList<>(Arrays.asList(cyrusWeavile)), cyrusWeavile, 280);
         Trainer steven = new Trainer("Champion Steven", new ArrayList<>(Arrays.asList(stevensMetagross)), stevensMetagross, 200);
         //Array of available Trainers to choose from
