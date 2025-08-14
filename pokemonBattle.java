@@ -42,10 +42,10 @@ public class pokemonBattle {
         ArrayList<Pokemon> pokeDex = new ArrayList<>(Arrays.asList(arceus, garchomp, metagross, rayquaza, weavile));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
-        Trainer user = new Trainer("user", rayquaza, 120);
-        Trainer cynthia = new Trainer("Champion Cynthia", cynthiasGarchomp, 200);
-        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", cyrusWeavile, 280);
-        Trainer steven = new Trainer("Champion Steven", stevensMetagross, 200);
+        Trainer user = new Trainer("user", new ArrayList<>(Arrays.asList(rayquaza)), rayquaza, 120);
+        Trainer cynthia = new Trainer("Champion Cynthia", new ArrayList<>(Arrays.asList(cynthiasGarchomp)), cynthiasGarchomp, 200);
+        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", new ArrayList<>(Arrays.asList(cyrusWeavile)), cyrusWeavile, 280);
+        Trainer steven = new Trainer("Champion Steven", new ArrayList<>(Arrays.asList(stevensMetagross)), stevensMetagross, 200);
         //Array of available Trainers to choose from
         ArrayList<Trainer> trainers = new ArrayList<>(Arrays.asList(cynthia, cyrus, steven));
 
