@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+
 public class Trainer {
     
     String name;
+    ArrayList<Pokemon> team;
     Pokemon acePokemon;
     int aceLevel;
     int prizeMoneyBase;
     int prizeMoney;
     boolean outOfPokemon;
 
-    Trainer(String name, Pokemon acePokemon, int prizeMoneyBase) {
+    Trainer(String name, ArrayList<Pokemon> team, Pokemon acePokemon, int prizeMoneyBase) {
 
         this.name = name;
         this.acePokemon = acePokemon;
