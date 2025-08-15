@@ -136,9 +136,7 @@ public class pokemonBattle {
         }
         //set user's chosen pokemon to their Pokemon
         user = new Trainer("user", pokeTeams.get(Integer.parseInt(choice) - 1), 120);
-        user.team = pokeTeams.get(Integer.parseInt(choice) - 1);
-        user.acePokemon = user.team.get(user.team.size() - 1);
-        System.out.println(user.acePokemon.name);
+        System.out.println(user.currentPokemon.name);
 
         //Get the trainer the user would like to face
         trainerSelection(trainers);
@@ -156,16 +154,16 @@ public class pokemonBattle {
         Trainer comp = trainers.get(Integer.parseInt(choice) - 1);
 
         //Prints text for start of the battle
-        startBattle(user.acePokemon, comp);
+        startBattle(user, comp);
 
 
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
-        while (!user.acePokemon.hasFainted && !comp.acePokemon.hasFainted) {
+        while (!user.currentPokemon.hasFainted && !comp.currentPokemon.hasFainted) {
 
             //print out user's pokemon's moves and a number to select them with, alongside the remaining pp
-            System.out.println("What will " + user.acePokemon.name + " do?");
+            System.out.println("What will " + user.currentPokemon.name + " do?");
             for (int i = 0; i < 4; i++) {
-                System.out.println((i + 1) + ". " + user.acePokemon.moves.get(i).name + "  PP: " + user.acePokemon.moves.get(i).currentPP + "/" + user.acePokemon.moves.get(i).pp);
+                System.out.println((i + 1) + ". " + user.currentPokemon.moves.get(i).name + "  PP: " + user.currentPokemon.moves.get(i).currentPP + "/" + user.currentPokemon.moves.get(i).pp);
             }
 
             //needs to be reset every iteration of while loop
@@ -181,30 +179,31 @@ public class pokemonBattle {
                     accepted = true;
 
                     //check that the move still has pp
-                    if (user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP == 0) {
+                    if (user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP == 0) {
                         System.out.println("You don't have enough PP to use that move");
                         accepted = false;
                     }
                     else{
                         //if there is enough pp, reduce the remaining pp by 1
-                        user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP -= 1;
+                        user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP -= 1;
                     }
                 }
             }
             System.out.println();
             
             //user choses which move they want to use
-            userMove = user.acePokemon.moves.get(Integer.parseInt(moveSelection) - 1);
+            userMove = user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
             //computerMove
-            compMove = comp.acePokemon.moves.get(random.nextInt(1, 5) - 1);
+            compMove = comp.currentPokemon.moves.get(random.nextInt(1, 5) - 1);
 
             speedTie = random.nextInt(0, 2);//used for determining which pokemon goes first in the event their speeds are the same
             //Perorm both players attacks and print the result
-            battleSequence(user.acePokemon, userMove, comp.acePokemon, compMove, speedTie);
+            battleSequence(user.currentPokemon, userMove, comp.currentPokemon, compMove, speedTie);
 
             //Displays match outcome when either pokemon has fainted
-            if (user.acePokemon.hasFainted || comp.acePokemon.hasFainted) {
+            //if (user.remainingPokemon == 0 || comp.remainingPokemon == 0) {
+            if (user.currentPokemon.hasFainted || comp.currentPokemon.hasFainted) {
                 matchEnd(user, comp);
             };
 
@@ -220,7 +219,7 @@ public class pokemonBattle {
         System.out.println("*****************************************");
 
         //Outputs each of the Pokemon's names and a number to select them
-        System.out.println("Which Pokemon would you like to use: ");
+        System.out.println("Which team of Pokemon would you like to use: ");
         for (int i = 0; i < pokeDex.size(); i++) {
 
             System.out.print("Team " + (i + 1) + ". ");
@@ -241,13 +240,13 @@ public class pokemonBattle {
     }
 
     //displays message welcoming you when copde is first ran
-    public static void startBattle(Pokemon userPokemon, Trainer comp) {
+    public static void startBattle(Trainer user, Trainer comp) {
         
         // Start Battle Dialogue
         System.out.println("\nYou are challenged by " + comp.name);
-        System.out.println(comp.name + " sent out " + comp.acePokemon.name + "!");
-        System.out.println("Go! " + userPokemon.name + "!");
-        System.out.println(battleScreen(userPokemon, comp.acePokemon));
+        System.out.println(comp.name + " sent out " + comp.currentPokemon.name + "!");
+        System.out.println("Go! " + user.currentPokemon.name + "!");
+        System.out.println(battleScreen(user.currentPokemon, comp.currentPokemon));
     }
 
     //returns screen to display current battle status
