@@ -62,12 +62,16 @@ public class pokemonBattle {
         Pokemon spiritomb = new Pokemon("Spiritomb", 50, new ArrayList<>(Arrays.asList("Ghost", "Dark")), new ArrayList<>(Arrays.asList(shadowBall, darkPulse, psychic, suckerPunch)),  110, 97, 113, 97, 113, 40);
         Pokemon togekiss = new Pokemon("Togekiss", 50, new ArrayList<>(Arrays.asList("Fairy", "Flying")), new ArrayList<>(Arrays.asList(airSlash, dazzlingGleam, auraSphere, waterPulse)),  145, 55, 100, 125, 120, 85);
         Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(metalClaw, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
+        
+        //Pokemon Teams
+        ArrayList<Pokemon> cynthiasTeam = new ArrayList<>(Arrays.asList(cynthiasSpiritomb, cynthiasRoserade, cynthiasTogekiss, cynthiasLucario, cynthiasMilotic, cynthiasGarchomp));
         //Array of available Pokemon to choose from
-        ArrayList<Pokemon> pokeDex = new ArrayList<>(Arrays.asList(arceus, garchomp, metagross, rayquaza, weavile));
+
+        ArrayList<ArrayList<Pokemon>> pokeDex = new ArrayList<>(Arrays.asList(cynthiasTeam));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
         Trainer user = new Trainer("user", new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, garchomp, arceus, rayquaza)), rayquaza, 120);
-        Trainer cynthia = new Trainer("Champion Cynthia", new ArrayList<>(Arrays.asList(cynthiasSpiritomb, cynthiasRoserade, cynthiasTogekiss, cynthiasLucario, cynthiasMilotic, cynthiasGarchomp)), cynthiasGarchomp, 200);
+        Trainer cynthia = new Trainer("Champion Cynthia", cynthiasTeam, cynthiasGarchomp, 200);
         Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", new ArrayList<>(Arrays.asList(cyrusWeavile)), cyrusWeavile, 280);
         Trainer steven = new Trainer("Champion Steven", new ArrayList<>(Arrays.asList(stevensMetagross)), stevensMetagross, 200);
         //Array of available Trainers to choose from
@@ -130,7 +134,7 @@ public class pokemonBattle {
             }
         }
         //set user's chosen pokemon to their pokemon
-        user.acePokemon = pokeDex.get(Integer.parseInt(choice) - 1);
+        user.team = pokeDex.get(Integer.parseInt(choice) - 1);
 
         //Get the trainer the user would like to face
         trainerSelection(trainers);
@@ -204,7 +208,7 @@ public class pokemonBattle {
         scanner.close();
     }
 
-    public static void pokemonSelection(ArrayList<Pokemon> pokeDex) {
+    public static void pokemonSelection(ArrayList<ArrayList<Pokemon>> pokeDex) {
 
         //Greeting Message
         System.out.println("*****************************************");
@@ -214,7 +218,7 @@ public class pokemonBattle {
         //Outputs each of the Pokemon's names and a number to select them
         System.out.println("Which Pokemon would you like to use: ");
         for (int i = 0; i < pokeDex.size(); i++) {
-            System.out.println((i + 1) + ". " + pokeDex.get(i).name);
+            System.out.println((i + 1) + ". " + pokeDex.get(i));
         }
     }
 
@@ -435,6 +439,7 @@ public class pokemonBattle {
         if (userPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
             System.out.println(userPokemon.name + " fainted!");
+            //userPokemon.remainingPokemon -= 1;
         } else if (!compPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }

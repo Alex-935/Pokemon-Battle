@@ -8,7 +8,8 @@ public class Trainer {
     int aceLevel;
     int prizeMoneyBase;
     int prizeMoney;
-    boolean outOfPokemon;
+    Pokemon currentPokemon;
+    int remainingPokemon;
 
     Trainer(String name, ArrayList<Pokemon> team, Pokemon acePokemon, int prizeMoneyBase) {
 
@@ -17,6 +18,7 @@ public class Trainer {
         this.aceLevel = acePokemon.level;
         this.prizeMoneyBase = prizeMoneyBase;
         this.prizeMoney = prizeMoneyBase * aceLevel;
-        this.outOfPokemon = false;
+        this.currentPokemon = team.get(0);
+        this.remainingPokemon = team.size();
     }
 }
