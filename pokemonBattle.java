@@ -8,40 +8,40 @@ public class pokemonBattle {
     public static void main(String[] args) {
 
         //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
-        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20, 0);//guaranteed hit
-        Move airSlash = new Move("Air Slash", "Flying", "Spec", 75, 95, 15, 0);
-        Move auraSphere = new Move("Aura Sphere", "Fighting", "Spec", 80, 100, 20, 0);//guaranteed hit
-        Move blizzard = new Move("Blizzard", "Ice", "Spec", 110, 70,5, 0);
-        Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30,1);
-        Move closeCombat = new Move("Close Combat", "Fighting", "Phys", 120, 100,5, 0);
-        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100,15, 0);
-        Move darkPulse = new Move("Dark Pulse", "Dark", "Spec", 80, 100, 15, 0);
-        Move dazzlingGleam = new Move("Dazzling Gleam", "Fairy", "Spec", 80, 100, 10, 0);
-        Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10, 0);
-        Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5, 0);
-        Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10, 0);
-        Move energyBall = new Move("Energy Ball", "Grass", "Spec", 90, 100, 10, 0);
-        Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5, 2);
-        Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15, 0);
-        Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, 0);
-        Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, 0);
-        Move hydroPump = new Move("Hydro Pump", "Water", "Spec", 110, 80,5, 0);
-        Move iceBeam = new Move("Ice Beam", "Ice", "Spec", 90, 100, 10, 0);
-        Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, 0);
-        Move judgement = new Move("Judgement", "Normal", "Spec", 100, 100, 10, 0);
-        Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35, 0);
-        Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, 0);
-        Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, 0);
-        Move psychic = new Move("Psychic", "Psychic", "Spec", 90, 100, 10, 0);
-        Move scald = new Move("Scald", "Water", "Spec", 80, 100, 15, 0);
-        Move shadowBall = new Move("Shadow Ball", "Ghost", "Spec", 80, 100, 15, 0);
-        Move sludgeBomb = new Move("Sludge Bomb", "Poison", "Spec", 90, 100, 10, 0);
-        Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, 0);
-        Move suckerPunch = new Move("Sucker Punch", "Dark", "Phys", 80, 100, 5, 1);//had pover of 80 pre gen-7
-        Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, 0);
-        Move thunder = new Move("Thunder", "Electric", "Spec", 110, 70, 10, 0);
-        Move waterPulse = new Move("Water Pulse", "Water", "Spec", 60, 100, 20, 0);
-        Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15, 0);
+        Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20, null, 0, 0);//guaranteed hit
+        Move airSlash = new Move("Air Slash", "Flying", "Spec", 75, 95, 15, null, 0, 0);
+        Move auraSphere = new Move("Aura Sphere", "Fighting", "Spec", 80, 100, 20, null, 0,  0);//guaranteed hit
+        Move blizzard = new Move("Blizzard", "Ice", "Spec", 110, 70,5, null, 0,  0);
+        Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30, null, 0, 1);
+        Move closeCombat = new Move("Close Combat", "Fighting", "Phys", 120, 100, 5, null, 0,  0);
+        Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15, null, 0,  0);
+        Move darkPulse = new Move("Dark Pulse", "Dark", "Spec", 80, 100, 15, null, 0,  0);
+        Move dazzlingGleam = new Move("Dazzling Gleam", "Fairy", "Spec", 80, 100, 10, null, 0,  0);
+        Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10, null, 0,  0);
+        Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5, null, 0,  0);
+        Move earthquake = new Move("Earthquake", "Ground", "Phys", 100, 100, 10, null, 0,  0);
+        Move energyBall = new Move("Energy Ball", "Grass", "Spec", 90, 100, 10, null, 0,  0);
+        Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5, null, 0,  2);
+        Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15, null, 0,  0);
+        Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, null, 0,  0);
+        Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, null, 0,  0);
+        Move hydroPump = new Move("Hydro Pump", "Water", "Spec", 110, 80, 5, null, 0,  0);
+        Move iceBeam = new Move("Ice Beam", "Ice", "Spec", 90, 100, 10, null, 0,  0);
+        Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, null, 0,  0);
+        Move judgement = new Move("Judgement", "Normal", "Spec", 100, 100, 10, null, 0,  0);
+        Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 96, 35, null, 0,  0);
+        Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, null, 0,  0);
+        Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, null, 0,  0);
+        Move psychic = new Move("Psychic", "Psychic", "Spec", 90, 100, 10, null, 0,  0);
+        Move scald = new Move("Scald", "Water", "Spec", 80, 100, 15, null, 0,  0);
+        Move shadowBall = new Move("Shadow Ball", "Ghost", "Spec", 80, 100, 15, null, 0,  0);
+        Move sludgeBomb = new Move("Sludge Bomb", "Poison", "Spec", 90, 100, 10, null, 0,  0);
+        Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, null, 0,  0);
+        Move suckerPunch = new Move("Sucker Punch", "Dark", "Phys", 80, 100, 5, null, 0,  1);//had pover of 80 pre gen-7
+        Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, null, 0,  0);
+        Move thunder = new Move("Thunder", "Electric", "Spec", 110, 70, 10, null, 0,  0);
+        Move waterPulse = new Move("Water Pulse", "Water", "Spec", 60, 100, 20, null, 0,  0);
+        Move zenHeadbutt = new Move("Zen Headbutt", "Psychic", "Phys", 80, 90, 15, null, 0,  0);
 
         //Pokemon      Lv. 50 Stat calculaator: https://pycosites.com/pkmn/stat.php   Sets: https://calc.pokemonshowdown.com/ 
         Pokemon cynthiasSpiritomb = new Pokemon("Spiritomb", 50, new ArrayList<>(Arrays.asList("Ghost", "Dark")), new ArrayList<>(Arrays.asList(shadowBall, darkPulse, psychic, suckerPunch)),  110, 97, 113, 97, 113, 40);
@@ -336,6 +336,15 @@ public class pokemonBattle {
         int damage = calculateDamage(atkPokemon, atkMove, defPokemon);
         //Deal damage
         defPokemon.currentHp -= damage;
+
+        //secondary move effects
+        Random secondaryRandom = new Random();
+        int secondaryEffectChance = secondaryRandom.nextInt(1, 101);
+        if (atkMove.secondaryChance < secondaryEffectChance) {
+            /*
+             Switch Statement
+            */
+        }
     }
 
     //deals with actual fighting sequence, adds checks to ensure a fainted pokemon cannot attack
