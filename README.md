@@ -6,17 +6,18 @@
   
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
+  - Switch your active Pokemon during battle (Set switching).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
-  - Checks that a user has enough PP (Power Points) to use their chosen move
-  - Advances Damage Calculation
-     - Calculations use the official damage formula
-     - Move Accuracy
+  - Checks that a user has enough PP (Power Points) to use their chosen move.
+  - Advances Damage Calculation.
+     - Calculations use the official damage formula.
+     - Move Accuracy.
      - Speed stat determines move order. In the event of a speed tie, the order is randomly decided.
-     - Move priority (such as Extreme Speed, having +2 priority, allows the user to go first regardless of speed stats)
-     - STAB - Same-Type Attack Bonus
-     - Critical Hits
-     - Randomly fluctuating damage 
-  - Custom victory message based on which trainer you beat (or a loss message if you fail, but hopefully not ;) )
+     - Move priority (such as Extreme Speed, having +2 priority, allows the user to go first regardless of speed stats).
+     - STAB - Same-Type Attack Bonus.
+     - Critical Hits.
+     - Randomly fluctuating damage.
+  - Custom victory message based on which trainer you beat (or a loss message if you fail, but hopefully not ;) ).
 
 
 # Features in more detail
