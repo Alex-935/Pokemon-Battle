@@ -117,7 +117,7 @@ public class pokemonBattle {
         boolean accepted = false;//used to confirm move selection
         String choice = "";
         String moveSelection = "";//stored value of move selected by user
-        Move userMove;//the move the user has picked for this turn
+        Move userMove = null;//the move the user has picked for this turn
         Move compMove;//the move the computer is using this turn
         int speedTie;//used for determining which pokemon goes first in the event their speeds are the same
 
@@ -127,16 +127,16 @@ public class pokemonBattle {
         accepted = false;
         while (!accepted) { 
 
-            System.out.print("\nPlease select the number of the Pokemon you'd like to use: ");
+            System.out.print("\nPlease select the number of the team you'd like to use: ");
             choice = scanner.nextLine();
 
+            //ensures the number of the team is valid
             if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4") || choice.equals("5")) {  
                 accepted = true;
             }
         }
         //set user's chosen pokemon to their Pokemon
         user = new Trainer("user", pokeTeams.get(Integer.parseInt(choice) - 1), 120);
-        System.out.println(user.currentPokemon.name);
 
         //Get the trainer the user would like to face
         trainerSelection(trainers);
@@ -146,6 +146,7 @@ public class pokemonBattle {
             System.out.print("Please select the number of the Trainer you would like to face: ");
             choice = scanner.nextLine();
 
+            //ensures the number of the trainer is valid
             if (choice.equals("1") ||  choice.equals("2") || choice.equals("3")) {  
                 accepted = true;
             }
@@ -165,6 +166,8 @@ public class pokemonBattle {
             for (int i = 0; i < 4; i++) {
                 System.out.println((i + 1) + ". " + user.currentPokemon.moves.get(i).name + "  PP: " + user.currentPokemon.moves.get(i).currentPP + "/" + user.currentPokemon.moves.get(i).pp);
             }
+            //Gives the additional option to switch pokemon
+            System.out.println("5. Switch");
 
             //needs to be reset every iteration of while loop
             accepted = false;
@@ -174,6 +177,7 @@ public class pokemonBattle {
                 System.out.print("Please enter the number of the move you want to use: ");
                 moveSelection = scanner.nextLine();
 
+                //Only if the user selected a move
                 //check that the user has entered the number of a move
                 if (moveSelection.equals("1") || moveSelection.equals("2") || moveSelection.equals("3") || moveSelection.equals("4")) {  
                     accepted = true;
@@ -186,13 +190,26 @@ public class pokemonBattle {
                     else{
                         //if there is enough pp, reduce the remaining pp by 1
                         user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1).currentPP -= 1;
+                        //userMove becomes the move the user wants to use
+                        userMove = user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
                     }
                 }
+
+                //if the user selected to switch pokemon
+                else if (moveSelection.equals("5")) {
+                    
+                    String oldPokemon = user.currentPokemon.name;
+                    switchPokemon(user);
+                    //switching happens instead of using a move for that turn
+                    System.out.printf("\n%s, switch out!\nCome Back!\n", oldPokemon);
+                    System.out.printf("Go! %s!\n", user.currentPokemon.name);
+                    userMove = null;
+                    accepted = true;
+                }
+
             }
+
             System.out.println();
-            
-            //user choses which move they want to use
-            userMove = user.currentPokemon.moves.get(Integer.parseInt(moveSelection) - 1);
 
             //computerMove
             compMove = comp.currentPokemon.moves.get(random.nextInt(1, 5) - 1);
@@ -218,10 +235,11 @@ public class pokemonBattle {
         System.out.println(" Welcome to the Pokemon Battle Simulator");
         System.out.println("*****************************************");
 
-        //Outputs each of the Pokemon's names and a number to select them
+        //Outputs each of the team of Pokemon and a number to select them
         System.out.println("Which team of Pokemon would you like to use: ");
         for (int i = 0; i < pokeDex.size(); i++) {
 
+            //goes through the team array and prints the name of each pokemon
             System.out.print("Team " + (i + 1) + ". ");
             for (Pokemon poke : pokeDex.get(i)) {
                 System.out.print(poke.name + ", ");
@@ -283,6 +301,8 @@ public class pokemonBattle {
             return 0;
         }
 
+        //Phys/Special split. Uses different attack stats based on whether the move is a physical or a special move. 
+        //Status moves deal no damage but have an effect instead
         if (move.category.equals("Phys")) {
             //physical move
             baseDamage = ((((attackingPokemon.level * 0.4) + 2) * move.power * (attackingPokemon.atk / defendingPokemon.def)) / 50) + 2;
@@ -305,6 +325,7 @@ public class pokemonBattle {
         for (int i = 0; i < 18; i++) {
             if (move.type.equals(typesList.get(i))) {
 
+                //multiply the damage by the type-on-type damage multiplyer.    e.g Fire is 2x effective against grass, fire is 1/2 effective against water
                 multiplier = Double.parseDouble(defendingPokemon.weaknesses.get(i));
                 baseDamage *= multiplier;
             }
@@ -342,20 +363,23 @@ public class pokemonBattle {
     //displays move use, calculates the damage and applies it to defending pokemon
     public static void battleAttack(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon) {
 
-        //prints the name of the move the user selected
-        System.out.println(atkPokemon.name + " used "+ atkMove.name + "!");
-        //calculate moves Damage
-        int damage = calculateDamage(atkPokemon, atkMove, defPokemon);
-        //Deal damage
-        defPokemon.currentHp -= damage;
+        //when the user has chosen a move instead of switching pokemon
+        if (atkMove != null) {
+            //prints the name of the move the user selected
+            System.out.println(atkPokemon.name + " used "+ atkMove.name + "!");
+            //calculate moves Damage
+            int damage = calculateDamage(atkPokemon, atkMove, defPokemon);
+            //Deal damage
+            defPokemon.currentHp -= damage;
 
-        //secondary move effects
-        Random secondaryRandom = new Random();
-        int secondaryEffectChance = secondaryRandom.nextInt(1, 101);
-        if (atkMove.secondaryChance < secondaryEffectChance) {
-            /*
-             Switch Statement
-            */
+            //secondary move effects
+            Random secondaryRandom = new Random();
+            int secondaryEffectChance = secondaryRandom.nextInt(1, 101);
+            if (atkMove.secondaryChance < secondaryEffectChance) {
+                /*
+                Switch Statement
+                */
+            }
         }
     }
 
@@ -398,13 +422,23 @@ public class pokemonBattle {
     //calculates battle order based on the pokemons speed. Also used to ensure the sys.outs are displayed in the correct order and under the right conditions.
     public static void battleSequence(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove, int speedTie) {
 
+        //switching should happen before the opponent attacks.
+        int userPriority = 10;
+        int compPriority = 10;
+
+        if (userMove != null) {
+            userPriority = userMove.priority;
+        } else if (compMove != null) {
+            compPriority = compMove.priority;
+        }
+
         //if the users move has priority over the computers
-        if (userMove.priority > compMove.priority) {
+        if (userPriority > compPriority) {
             
             userAttacksFirst(userPokemon, userMove, compPokemon, compMove);
         } 
         //if the computers move has priority over the users
-        else if (userMove.priority < compMove.priority) {
+        else if (userPriority < compPriority) {
             compAttacksFirst(userPokemon, userMove, compPokemon, compMove);
         } 
         //if both moves have the same priority
@@ -467,6 +501,39 @@ public class pokemonBattle {
         }
     }
 
+    
+    //used to switch pokemon during battle
+    public static void switchPokemon(Trainer switcher) {
+
+        System.out.println("Your team is: ");
+        for (int i = 0; i < switcher.team.size(); i++) {
+            if (switcher.team.get(i).currentHp == 0) {
+                System.out.println((i + 1) + ". " + switcher.team.get(i).name + " (Fainted!)");
+            }
+            else {
+                System.out.println((i + 1) + ". " + switcher.team.get(i).name);
+            }
+        }
+
+        Scanner switchScanner = new Scanner(System.in);
+        boolean accepted = false;
+        while (!accepted) { 
+            
+            System.out.print("Which Pokemon would you like to switch to?: ");
+            String option = switchScanner.nextLine();
+
+            if (option.equals("1") ||  option.equals("2") || option.equals("3") || option.equals("4") ||  option.equals("5") || option.equals("6")) {  
+                accepted = true;
+            
+                if (switcher.team.get(Integer.parseInt(option) - 1).currentHp != 0) {
+                    
+                    switcher.currentPokemon = switcher.team.get(Integer.parseInt(option) - 1);
+                    accepted = true;
+                }
+            }
+        }
+    }
+
 
     //decides which final message to print when the winner has been decided
     public static void matchEnd(Trainer user, Trainer comp) {
@@ -474,6 +541,8 @@ public class pokemonBattle {
         if (user.acePokemon.hasFainted) {
             playerLost(user.prizeMoney);
         } else {
+
+            //choses which trainer defeat message to print
             switch(comp.name) {
 
                 case "Champion Cynthia" -> {cynthiaLost(comp.prizeMoney);}
