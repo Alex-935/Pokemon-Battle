@@ -11,10 +11,11 @@ public class Trainer {
     Pokemon currentPokemon;
     int remainingPokemon;
 
-    Trainer(String name, ArrayList<Pokemon> team, Pokemon acePokemon, int prizeMoneyBase) {
+    Trainer(String name, ArrayList<Pokemon> team, int prizeMoneyBase) {
 
         this.name = name;
-        this.acePokemon = acePokemon;
+        this.team = team;
+        this.acePokemon = this.team.get(this.team.size() - 1);
         this.aceLevel = acePokemon.level;
         this.prizeMoneyBase = prizeMoneyBase;
         this.prizeMoney = prizeMoneyBase * aceLevel;

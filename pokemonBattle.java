@@ -64,16 +64,17 @@ public class pokemonBattle {
         Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(metalClaw, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
         
         //Pokemon Teams
+        ArrayList<Pokemon> team1 = new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, garchomp, arceus, rayquaza));
         ArrayList<Pokemon> cynthiasTeam = new ArrayList<>(Arrays.asList(cynthiasSpiritomb, cynthiasRoserade, cynthiasTogekiss, cynthiasLucario, cynthiasMilotic, cynthiasGarchomp));
-        //Array of available Pokemon to choose from
-
-        ArrayList<ArrayList<Pokemon>> pokeDex = new ArrayList<>(Arrays.asList(cynthiasTeam));
+        //Array of pokemon teams to choose from
+        ArrayList<ArrayList<Pokemon>> pokeTeams = new ArrayList<>(Arrays.asList(team1, cynthiasTeam));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
-        Trainer user = new Trainer("user", new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, garchomp, arceus, rayquaza)), rayquaza, 120);
-        Trainer cynthia = new Trainer("Champion Cynthia", cynthiasTeam, cynthiasGarchomp, 200);
-        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", new ArrayList<>(Arrays.asList(cyrusWeavile)), cyrusWeavile, 280);
-        Trainer steven = new Trainer("Champion Steven", new ArrayList<>(Arrays.asList(stevensMetagross)), stevensMetagross, 200);
+        Trainer user;
+        Trainer user2 = new Trainer("user", team1, 120);
+        Trainer cynthia = new Trainer("Champion Cynthia", cynthiasTeam, 200);
+        Trainer cyrus = new Trainer("Team Galactic Boss Cyrus", new ArrayList<>(Arrays.asList(cyrusWeavile)), 280);
+        Trainer steven = new Trainer("Champion Steven", new ArrayList<>(Arrays.asList(stevensMetagross)), 200);
         //Array of available Trainers to choose from
         ArrayList<Trainer> trainers = new ArrayList<>(Arrays.asList(cynthia, cyrus, steven));
 
@@ -122,19 +123,22 @@ public class pokemonBattle {
 
 
         //Greets user and gets the pokemon the user would like to use
-        pokemonSelection(pokeDex);
+        pokemonSelection(pokeTeams);
         accepted = false;
         while (!accepted) { 
 
-            System.out.print("Please select the number of the Pokemon you'd like to use: ");
+            System.out.print("\nPlease select the number of the Pokemon you'd like to use: ");
             choice = scanner.nextLine();
 
             if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4") || choice.equals("5")) {  
                 accepted = true;
             }
         }
-        //set user's chosen pokemon to their pokemon
-        user.team = pokeDex.get(Integer.parseInt(choice) - 1);
+        //set user's chosen pokemon to their Pokemon
+        user = new Trainer("user", pokeTeams.get(Integer.parseInt(choice) - 1), 120);
+        user.team = pokeTeams.get(Integer.parseInt(choice) - 1);
+        user.acePokemon = user.team.get(user.team.size() - 1);
+        System.out.println(user.acePokemon.name);
 
         //Get the trainer the user would like to face
         trainerSelection(trainers);
@@ -218,7 +222,12 @@ public class pokemonBattle {
         //Outputs each of the Pokemon's names and a number to select them
         System.out.println("Which Pokemon would you like to use: ");
         for (int i = 0; i < pokeDex.size(); i++) {
-            System.out.println((i + 1) + ". " + pokeDex.get(i));
+
+            System.out.print("Team " + (i + 1) + ". ");
+            for (Pokemon poke : pokeDex.get(i)) {
+                System.out.print(poke.name + ", ");
+            }
+            System.out.println();
         }
     }
 
