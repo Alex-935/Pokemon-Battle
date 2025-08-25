@@ -201,8 +201,8 @@ public class pokemonBattle {
                     String oldPokemon = user.currentPokemon.name;
                     userSwitchPokemon(user);
                     //switching happens instead of using a move for that turn
-                    System.out.printf("\n%s, switch out!\nCome Back!\n", oldPokemon);
-                    System.out.printf("Go! %s!\n", user.currentPokemon.name);
+                    System.out.printf("%s, switch out!\nCome Back!\n", oldPokemon);
+                    System.out.printf("Go! %s!", user.currentPokemon.name);
                     userMove = null;
                     accepted = true;
                 }
@@ -412,7 +412,8 @@ public class pokemonBattle {
                 }
             }
             
-        } //if the defending pokemon lives, he attacks. We then check if the other pokemon fainted from the attack
+        } 
+        //if the defending pokemon lives, he attacks. We then check if the other pokemon fainted from the attack
         else {
             battleAttack(defPokemon, defMove, atkPokemon);
             faintedCheck(atkPokemon);
@@ -431,11 +432,9 @@ public class pokemonBattle {
     //calculates battle order based on the pokemons speed. Also used to ensure the sys.outs are displayed in the correct order and under the right conditions.
     public static void battleSequence(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove, int speedTie) {
 
-
-
-        //switching should happen before the opponent attacks.
-        int userPriority = 10;
-        int compPriority = 10;
+        //used to decide who attacks first.
+        int userPriority = 0;
+        int compPriority = 0;
 
         if (userMove != null) {
             userPriority = userMove.priority;
@@ -515,7 +514,7 @@ public class pokemonBattle {
             System.out.println("The foe's " + compPokemon.name + " fainted!");
             comp.remainingPokemon -= 1;
             compSwitchPokemon(user, comp);
-        } else if (!userPokemon.hasFainted) {
+        } else if (!userPokemon.hasFainted && userMove != null) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
     }
