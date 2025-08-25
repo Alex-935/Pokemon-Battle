@@ -6,6 +6,7 @@
   
 - Main Features:
   - Allows move types to affect battle (Super effective, Not very effective, Does not affect).
+  - Allows 6v6 Battling.
   - Switch your active Pokemon during battle (Set switching).
   - Ability to select your Pokemon, the trainer / trainer's Pokemon, your moves each turn. (All inputs validated)
   - Checks that a user has enough PP (Power Points) to use their chosen move.
@@ -38,6 +39,11 @@
    
 
 <img width="698" height="473" alt="pokemonBattle Super Effective" src="https://github.com/user-attachments/assets/a113a038-7e40-4ba5-b8a0-76d418e366e7" />
+
+- Allows Full 6v6 Battles
+
+
+<img width="1386" height="1234" alt="pokemonBattle Whole Team" src="https://github.com/user-attachments/assets/659b356e-2249-47c8-9812-f8b7b45dbce3" />
 
 
 - Allow the user to switch Pokemon during battle. (Set switching - switching is instead of using a move).
