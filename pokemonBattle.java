@@ -159,7 +159,7 @@ public class pokemonBattle {
 
 
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
-        while (!user.currentPokemon.hasFainted && !comp.currentPokemon.hasFainted) {
+        while (user.remainingPokemon > 0 && comp.remainingPokemon > 0) {
 
             //print out user's pokemon's moves and a number to select them with, alongside the remaining pp
             System.out.println("What will " + user.currentPokemon.name + " do?");
@@ -199,7 +199,7 @@ public class pokemonBattle {
                 else if (moveSelection.equals("5")) {
                     
                     String oldPokemon = user.currentPokemon.name;
-                    switchPokemon(user);
+                    userSwitchPokemon(user);
                     //switching happens instead of using a move for that turn
                     System.out.printf("\n%s, switch out!\nCome Back!\n", oldPokemon);
                     System.out.printf("Go! %s!\n", user.currentPokemon.name);
@@ -219,11 +219,9 @@ public class pokemonBattle {
             battleSequence(user, user.currentPokemon, userMove, comp, comp.currentPokemon, compMove, speedTie);
 
             //Displays match outcome when either pokemon has fainted
-            //if (user.remainingPokemon == 0 || comp.remainingPokemon == 0) {
-            if (user.currentPokemon.hasFainted || comp.currentPokemon.hasFainted) {
+            if (user.remainingPokemon == 0 || comp.remainingPokemon == 0) {
+            //if (user.currentPokemon.hasFainted || comp.currentPokemon.hasFainted) {
 
-                System.out.println("User remaining: " + user.remainingPokemon);
-                System.out.println("Comp remaining: " + comp.remainingPokemon);
                 matchEnd(user, comp);
             };
 
@@ -403,9 +401,15 @@ public class pokemonBattle {
             if (flipDisplay) {
                 System.out.println("The foe's " + defPokemon.name + " fainted!");
                 comp.remainingPokemon -= 1;
+                compSwitchPokemon(user, comp);
             } else {
                 System.out.println(defPokemon.name + " fainted!");
                 user.remainingPokemon -= 1;
+
+                //only switches pokemon if the user has a pokemon left to fight
+                if (user.remainingPokemon > 0) {
+                    userSwitchPokemon(user);
+                }
             }
             
         } //if the defending pokemon lives, he attacks. We then check if the other pokemon fainted from the attack
@@ -489,6 +493,12 @@ public class pokemonBattle {
             System.out.println(battleScreen(userPokemon, compPokemon));
             System.out.println(userPokemon.name + " fainted!");
             user.remainingPokemon -= 1;
+
+            //only switches pokemon if the user has a pokemon left to fight
+            if (user.remainingPokemon > 0) {
+                userSwitchPokemon(user);
+            }
+
         } else if (!compPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
@@ -504,6 +514,7 @@ public class pokemonBattle {
             System.out.println(battleScreen(userPokemon, compPokemon));
             System.out.println("The foe's " + compPokemon.name + " fainted!");
             comp.remainingPokemon -= 1;
+            compSwitchPokemon(user, comp);
         } else if (!userPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
@@ -511,15 +522,15 @@ public class pokemonBattle {
 
     
     //used to switch pokemon during battle
-    public static void switchPokemon(Trainer switcher) {
+    public static void userSwitchPokemon(Trainer user) {
 
         System.out.println("Your team is: ");
-        for (int i = 0; i < switcher.team.size(); i++) {
-            if (switcher.team.get(i).currentHp == 0) {
-                System.out.println((i + 1) + ". " + switcher.team.get(i).name + " (Fainted!)");
+        for (int i = 0; i < user.team.size(); i++) {
+            if (user.team.get(i).currentHp == 0) {
+                System.out.println((i + 1) + ". " + user.team.get(i).name + " (Fainted!)");
             }
             else {
-                System.out.println((i + 1) + ". " + switcher.team.get(i).name);
+                System.out.println((i + 1) + ". " + user.team.get(i).name);
             }
         }
 
@@ -531,12 +542,36 @@ public class pokemonBattle {
             String option = switchScanner.nextLine();
 
             if (option.equals("1") ||  option.equals("2") || option.equals("3") || option.equals("4") ||  option.equals("5") || option.equals("6")) {  
-                accepted = true;
             
-                if (switcher.team.get(Integer.parseInt(option) - 1).currentHp != 0) {
+                if (user.team.get(Integer.parseInt(option) - 1).currentHp > 0) {
                     
-                    switcher.currentPokemon = switcher.team.get(Integer.parseInt(option) - 1);
+                    user.currentPokemon = user.team.get(Integer.parseInt(option) - 1);
                     accepted = true;
+                }
+                else {
+                    System.out.println(user.team.get(Integer.parseInt(option) - 1).name + " can't battle!");
+                    accepted = false;
+                }
+            }
+        }
+        //for better spacing in the terminal message
+        System.out.println();
+    }
+
+    //Computer switches pokemon
+    public static void compSwitchPokemon(Trainer user, Trainer comp) {
+
+        for (int i = 0; i < comp.team.size(); i++) {
+            
+            //finds the index of the pokemon that fainted, and selects the next pokemon
+            if (comp.currentPokemon.name.equals(comp.team.get(i).name)) {
+            
+                //prevents out of bounds error when team has all fainted
+                if (i != 5) {
+                    comp.currentPokemon = comp.team.get(i + 1);
+                    System.out.print(comp.name + " sent out " + comp.currentPokemon.name + "!\n");
+                    System.out.print(battleScreen(user.currentPokemon, comp.currentPokemon));
+                    break;
                 }
             }
         }
