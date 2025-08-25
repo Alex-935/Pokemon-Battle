@@ -43,7 +43,7 @@
 - Allows Full 6v6 Battles
 
 
-<img width="1386" height="1234" alt="pokemonBattle Whole Team" src="https://github.com/user-attachments/assets/659b356e-2249-47c8-9812-f8b7b45dbce3" />
+<img width="711" height="997" alt="pokemonBattle Whole Team" src="https://github.com/user-attachments/assets/a6fb5e87-9d1c-4e87-99e7-d76019ed89ad" />
 
 
 - Allow the user to switch Pokemon during battle. (Set switching - switching is instead of using a move).
