@@ -159,7 +159,7 @@ public class pokemonBattle {
 
 
         // repeats battle sequence until we get a winner. True while neither pokemon has fainted.
-        while (!user.currentPokemon.hasFainted && !comp.currentPokemon.hasFainted) {
+        while (user.remainingPokemon > 0 && comp.remainingPokemon > 0) {
 
             //print out user's pokemon's moves and a number to select them with, alongside the remaining pp
             System.out.println("What will " + user.currentPokemon.name + " do?");
@@ -199,7 +199,7 @@ public class pokemonBattle {
                 else if (moveSelection.equals("5")) {
                     
                     String oldPokemon = user.currentPokemon.name;
-                    switchPokemon(user);
+                    userSwitchPokemon(user);
                     //switching happens instead of using a move for that turn
                     System.out.printf("\n%s, switch out!\nCome Back!\n", oldPokemon);
                     System.out.printf("Go! %s!\n", user.currentPokemon.name);
@@ -216,11 +216,12 @@ public class pokemonBattle {
 
             speedTie = random.nextInt(0, 2);//used for determining which pokemon goes first in the event their speeds are the same
             //Perorm both players attacks and print the result
-            battleSequence(user.currentPokemon, userMove, comp.currentPokemon, compMove, speedTie);
+            battleSequence(user, user.currentPokemon, userMove, comp, comp.currentPokemon, compMove, speedTie);
 
             //Displays match outcome when either pokemon has fainted
-            //if (user.remainingPokemon == 0 || comp.remainingPokemon == 0) {
-            if (user.currentPokemon.hasFainted || comp.currentPokemon.hasFainted) {
+            if (user.remainingPokemon == 0 || comp.remainingPokemon == 0) {
+            //if (user.currentPokemon.hasFainted || comp.currentPokemon.hasFainted) {
+
                 matchEnd(user, comp);
             };
 
@@ -384,7 +385,7 @@ public class pokemonBattle {
     }
 
     //deals with actual fighting sequence, adds checks to ensure a fainted pokemon cannot attack
-    public static void battleTurn(Pokemon atkPokemon, Move atkMove, Pokemon defPokemon, Move defMove, Boolean flipDisplay) {
+    public static void battleTurn(Trainer user, Pokemon atkPokemon, Move atkMove, Trainer comp, Pokemon defPokemon, Move defMove, Boolean flipDisplay) {
         //player's move
         battleAttack(atkPokemon, atkMove, defPokemon);
         faintedCheck(defPokemon);
@@ -399,8 +400,16 @@ public class pokemonBattle {
         if (defPokemon.hasFainted) {
             if (flipDisplay) {
                 System.out.println("The foe's " + defPokemon.name + " fainted!");
+                comp.remainingPokemon -= 1;
+                compSwitchPokemon(user, comp);
             } else {
                 System.out.println(defPokemon.name + " fainted!");
+                user.remainingPokemon -= 1;
+
+                //only switches pokemon if the user has a pokemon left to fight
+                if (user.remainingPokemon > 0) {
+                    userSwitchPokemon(user);
+                }
             }
             
         } //if the defending pokemon lives, he attacks. We then check if the other pokemon fainted from the attack
@@ -420,7 +429,9 @@ public class pokemonBattle {
     }
 
     //calculates battle order based on the pokemons speed. Also used to ensure the sys.outs are displayed in the correct order and under the right conditions.
-    public static void battleSequence(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove, int speedTie) {
+    public static void battleSequence(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove, int speedTie) {
+
+
 
         //switching should happen before the opponent attacks.
         int userPriority = 10;
@@ -435,11 +446,11 @@ public class pokemonBattle {
         //if the users move has priority over the computers
         if (userPriority > compPriority) {
             
-            userAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+            userAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);
         } 
         //if the computers move has priority over the users
         else if (userPriority < compPriority) {
-            compAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+            compAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);
         } 
         //if both moves have the same priority
         else {
@@ -447,12 +458,12 @@ public class pokemonBattle {
             //if user's pokemon is faster
             if (userPokemon.spd > compPokemon.spd) {
 
-                userAttacksFirst(userPokemon, userMove, compPokemon, compMove);             
+                userAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);             
             } 
             //if computer's pokemon is faster
             else if (userPokemon.spd < compPokemon.spd) {
 
-                compAttacksFirst(userPokemon, userMove, compPokemon, compMove);            
+                compAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);            
             }
             //speed tie, random who goes first
             else {
@@ -461,41 +472,49 @@ public class pokemonBattle {
                 if (speedTie == 0) {
 
                     //player's attack first
-                    userAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+                    userAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);
                 }
                 //if the random number for deciding speed rolled 1, the user computer first
                 else {
                     //computer attacks first
-                    compAttacksFirst(userPokemon, userMove, compPokemon, compMove);
+                    compAttacksFirst(user, userPokemon, userMove, comp, compPokemon, compMove);
                 }  
             }
         }   
     }
 
-    public static void userAttacksFirst(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove) {
+    public static void userAttacksFirst(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove) {
 
         //player's attack
-        battleTurn(userPokemon, userMove, compPokemon, compMove, true);
+        battleTurn(user, userPokemon, userMove, comp, compPokemon, compMove, true);
 
         //after the computer's attack, tells the user the result of the battle
         if (userPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
             System.out.println(userPokemon.name + " fainted!");
-            //userPokemon.remainingPokemon -= 1;
+            user.remainingPokemon -= 1;
+
+            //only switches pokemon if the user has a pokemon left to fight
+            if (user.remainingPokemon > 0) {
+                userSwitchPokemon(user);
+            }
+
         } else if (!compPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
     }
 
-    public static void compAttacksFirst(Pokemon userPokemon, Move userMove, Pokemon compPokemon, Move compMove) {
+    public static void compAttacksFirst(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove) {
 
         //computer's attck
-        battleTurn(compPokemon, compMove, userPokemon, userMove, false);
+        battleTurn(user, compPokemon, compMove, comp, userPokemon, userMove, false);
 
         ////after the players's attack, tells the user the result of the battle
         if (compPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
             System.out.println("The foe's " + compPokemon.name + " fainted!");
+            comp.remainingPokemon -= 1;
+            compSwitchPokemon(user, comp);
         } else if (!userPokemon.hasFainted) {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
@@ -503,15 +522,15 @@ public class pokemonBattle {
 
     
     //used to switch pokemon during battle
-    public static void switchPokemon(Trainer switcher) {
+    public static void userSwitchPokemon(Trainer user) {
 
         System.out.println("Your team is: ");
-        for (int i = 0; i < switcher.team.size(); i++) {
-            if (switcher.team.get(i).currentHp == 0) {
-                System.out.println((i + 1) + ". " + switcher.team.get(i).name + " (Fainted!)");
+        for (int i = 0; i < user.team.size(); i++) {
+            if (user.team.get(i).currentHp == 0) {
+                System.out.println((i + 1) + ". " + user.team.get(i).name + " (Fainted!)");
             }
             else {
-                System.out.println((i + 1) + ". " + switcher.team.get(i).name);
+                System.out.println((i + 1) + ". " + user.team.get(i).name);
             }
         }
 
@@ -523,12 +542,36 @@ public class pokemonBattle {
             String option = switchScanner.nextLine();
 
             if (option.equals("1") ||  option.equals("2") || option.equals("3") || option.equals("4") ||  option.equals("5") || option.equals("6")) {  
-                accepted = true;
             
-                if (switcher.team.get(Integer.parseInt(option) - 1).currentHp != 0) {
+                if (user.team.get(Integer.parseInt(option) - 1).currentHp > 0) {
                     
-                    switcher.currentPokemon = switcher.team.get(Integer.parseInt(option) - 1);
+                    user.currentPokemon = user.team.get(Integer.parseInt(option) - 1);
                     accepted = true;
+                }
+                else {
+                    System.out.println(user.team.get(Integer.parseInt(option) - 1).name + " can't battle!");
+                    accepted = false;
+                }
+            }
+        }
+        //for better spacing in the terminal message
+        System.out.println();
+    }
+
+    //Computer switches pokemon
+    public static void compSwitchPokemon(Trainer user, Trainer comp) {
+
+        for (int i = 0; i < comp.team.size(); i++) {
+            
+            //finds the index of the pokemon that fainted, and selects the next pokemon
+            if (comp.currentPokemon.name.equals(comp.team.get(i).name)) {
+            
+                //prevents out of bounds error when team has all fainted
+                if (i != 5) {
+                    comp.currentPokemon = comp.team.get(i + 1);
+                    System.out.print(comp.name + " sent out " + comp.currentPokemon.name + "!\n");
+                    System.out.print(battleScreen(user.currentPokemon, comp.currentPokemon));
+                    break;
                 }
             }
         }
