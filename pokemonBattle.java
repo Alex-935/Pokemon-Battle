@@ -8,20 +8,25 @@ public class pokemonBattle {
     public static void main(String[] args) {
 
         //Moves     Max PP: 8/5ths of base PP, 40 - 64, 30 - 48, 15 - 24, 10 - 16, 5 - 8
+        Move acrobatics = new Move("Acrobatics", "Flying", "Phys", 110, 100, 15, null, 0, 0);
         Move aerialAce = new Move("Aerial Ace", "Flying", "Phys", 60, 100, 20, null, 0, 0);//guaranteed hit
         Move airSlash = new Move("Air Slash", "Flying", "Spec", 75, 95, 15, null, 0, 0);
         Move ancientPower = new Move("Ancient Power", "Rock", "Spec", 60, 100, 5, null, 0,  0);
+        Move aquaTail = new Move("Aqua Tail", "Water", "Phys", 90, 90, 10, null, 0,  0);
         Move auraSphere = new Move("Aura Sphere", "Fighting", "Spec", 80, 100, 20, null, 0,  0);//guaranteed hit
         Move blizzard = new Move("Blizzard", "Ice", "Spec", 110, 70,5, null, 0,  0);
         Move bodyPress = new Move("Body Press", "Fighting", "Phys", 80, 100,10, null, 0,  0);
         Move braveBird = new Move("Brave Bird", "Flying", "Phys", 120, 100, 15, null, 0,  0);
         Move bulletPunch = new Move("Bullet Punch", "Steel", "Phys", 40, 100, 30, null, 0, 1);
         Move closeCombat = new Move("Close Combat", "Fighting", "Phys", 120, 100, 5, null, 0,  0);
+        Move crossPoison = new Move("Cross Poison", "Poison", "Phys", 70, 100, 20, null, 0,  0);
         Move crunch = new Move("Crunch", "Dark", "Phys", 80, 100, 15, null, 0,  0);
         Move crushClaw = new Move("Crush Claw", "Normal", "Phys", 75, 95, 10, null, 0,  0);
         Move darkPulse = new Move("Dark Pulse", "Dark", "Spec", 80, 100, 15, null, 0,  0);
         Move dazzlingGleam = new Move("Dazzling Gleam", "Fairy", "Spec", 80, 100, 10, null, 0,  0);
         Move dig = new Move("Dig", "Ground", "Phys", 80, 100, 10, null, 0,  0);
+        Move doubleEdge = new Move("Double Edge", "Normal", "Phys", 120, 100, 15, null, 0,  0);
+        Move dracoMeteor = new Move("Draco Meteor", "Dragon", "Spec", 130, 90, 5, null, 0,  0);
         Move dragonAscent = new Move("Dragon Ascent", "Flying", "Phys", 120, 100, 5, null, 0,  0);
         Move dragonClaw = new Move("Dragon Claw", "Dragon", "Phys", 80, 100, 15, null, 0,  0);
         Move earthPower = new Move("Earth Power", "Ground", "Spec", 90, 100, 10, null, 0,  0);
@@ -29,10 +34,15 @@ public class pokemonBattle {
         Move energyBall = new Move("Energy Ball", "Grass", "Spec", 90, 100, 10, null, 0,  0);
         Move extremeSpeed = new Move("Extreme Speed", "Normal", "Phys", 80, 100, 5, null, 0,  2);
         Move flamethrower = new Move("Flamethrower", "Fire", "Spec", 90, 100, 15, null, 0,  0);
+        Move flareBlitz = new Move("Flare Blitz", "Fire", "Phys", 120, 100, 15, null, 0, 0);
+        Move fly = new Move("Fly", "Flying", "Phys", 90, 95, 15, null, 0, 0);
+        Move foulPlay = new Move("Foul Play", "Dark", "Spec", 95, 100, 15, null, 0,  0);
         Move gigaImpact = new Move("Giga Impact", "Normal", "Phys", 150, 90, 5, null, 0,  0);
         Move hammerArm = new Move("Hammer Arm", "Fighting", "Phys", 100, 90, 10, null, 0,  0);
+        Move hurricane = new Move("Hurricane", "Flying", "Spec", 110, 70, 10, null, 0, 0);
         Move hydroPump = new Move("Hydro Pump", "Water", "Spec", 110, 80, 5, null, 0,  0);
         Move hyperBeam = new Move("Hyper Beam", "Normal", "Spec", 150, 90, 5, null, 0,  0);
+        Move hyperVoice = new Move("Hyper Voice", "Normal", "Spec", 90, 100, 10, null, 0,  0);
         Move iceBeam = new Move("Ice Beam", "Ice", "Spec", 90, 100, 10, null, 0,  0);
         Move icePunch = new Move("Ice Punch", "Ice", "Phys", 75, 100, 15, null, 0,  0);
         Move ironHead = new Move("Iron Head", "Steel", "Phys", 80, 100, 15, null, 0,  0);
@@ -41,10 +51,14 @@ public class pokemonBattle {
         Move metalClaw = new Move("Metal Claw", "Steel", "Phys", 50, 95, 35, null, 0,  0);
         Move meteorMash = new Move("Meteor Mash", "Steel", "Phys", 90, 90, 10, null, 0,  0);
         Move outrage = new Move("Outrage", "Dragon", "Phys", 120, 100, 10, null, 0,  0);
+        Move overheat = new Move("Overheat", "Fire", "Spec", 130, 90, 5, null, 0,  0);
         Move psychic = new Move("Psychic", "Psychic", "Spec", 90, 100, 10, null, 0,  0);
+        Move rockSlide = new Move("Rock Slide", "Rock", "Phys", 75, 90, 10, null, 0,  0);
         Move scald = new Move("Scald", "Water", "Spec", 80, 100, 15, null, 0,  0);
         Move shadowBall = new Move("Shadow Ball", "Ghost", "Spec", 80, 100, 15, null, 0,  0);
+        Move shadowForce = new Move("Shadow Force", "Ghost", "Phys", 120, 100, 5, null, 0,  0);
         Move sludgeBomb = new Move("Sludge Bomb", "Poison", "Spec", 90, 100, 10, null, 0,  0);
+        Move steelWing = new Move("Steel Wing", "Steel", "Phys", 70, 90, 25, null, 0,  0);
         Move stoneEdge = new Move("Stone Edge", "Rock", "Phys", 100, 80, 5, null, 0,  0);
         Move suckerPunch = new Move("Sucker Punch", "Dark", "Phys", 80, 100, 5, null, 0,  1);//had pover of 80 pre gen-7
         Move throatChop = new Move("Throat Chop", "Dark", "Phys", 80, 100, 15, null, 0,  0);
@@ -60,7 +74,12 @@ public class pokemonBattle {
         Pokemon cynthiasLucario = new Pokemon("Lucario", 50, new ArrayList<>(Arrays.asList("Fighting", "Steel")), new ArrayList<>(Arrays.asList(closeCombat, meteorMash, psychic, earthquake)),  130, 115, 75, 120, 75, 95);
         Pokemon cynthiasMilotic = new Pokemon("Milotic", 50, new ArrayList<>(Arrays.asList("Water", null)), new ArrayList<>(Arrays.asList(hydroPump, blizzard, iceBeam, scald)),  155, 65, 84, 105, 130, 86);
         Pokemon cynthiasGarchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(outrage, earthquake, stoneEdge, gigaImpact)),  183, 150, 115, 100, 105, 122);
+        Pokemon cyrusHoundoom = new Pokemon("Mega Houndoom", 50, new ArrayList<>(Arrays.asList("Dark", "Fire")), new ArrayList<>(Arrays.asList(overheat, shadowBall, sludgeBomb, darkPulse)), 135, 95,95, 145, 95, 120);
+        Pokemon cyrusHonchkrow = new Pokemon("Honchkrow", 50, new ArrayList<>(Arrays.asList("Dark", "Flying")), new ArrayList<>(Arrays.asList(foulPlay, psychic, acrobatics, doubleEdge)), 160, 130, 57, 110, 57, 76);
+        Pokemon cyrusCrobat = new Pokemon("Crobat", 50, new ArrayList<>(Arrays.asList("Poison", "Flying")), new ArrayList<>(Arrays.asList(crossPoison, xScissor, fly, steelWing)), 145, 95, 85, 75, 85, 135);
+        Pokemon cyrusGyarados = new Pokemon("Gyarados", 50, new ArrayList<>(Arrays.asList("Water", "Flying")), new ArrayList<>(Arrays.asList(aquaTail, crunch, outrage, hurricane)), 155, 130, 84, 65, 105, 86);
         Pokemon cyrusWeavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
+        Pokemon cyrusGiratina = new Pokemon("Giratina (Origin Form)", 50, new ArrayList<>(Arrays.asList("Ghost", "Dragon")), new ArrayList<>(Arrays.asList(earthquake, dracoMeteor, thunder, shadowForce)), 210, 125, 105, 125, 105, 95);
         Pokemon stevensSkarmory = new Pokemon("Skarmory", 50, new ArrayList<>(Arrays.asList("Steel", "Flying")), new ArrayList<>(Arrays.asList(bodyPress, braveBird, xScissor, ironHead)),  125, 85,145,45, 75, 75);
         Pokemon stevensClaydol = new Pokemon("Claydol", 50, new ArrayList<>(Arrays.asList("Ground", "Psychic")), new ArrayList<>(Arrays.asList(iceBeam, dazzlingGleam, psychic, earthPower)),  120, 75, 110, 75, 125, 80);
         Pokemon stevensAggron = new Pokemon("Aggron", 50, new ArrayList<>(Arrays.asList("Steel", "Rock")), new ArrayList<>(Arrays.asList(stoneEdge, earthquake, ironTail, dragonClaw)),  130, 115, 185, 65, 65, 55);
@@ -68,7 +87,11 @@ public class pokemonBattle {
         Pokemon stevensArmaldo = new Pokemon("Armaldo", 50, new ArrayList<>(Arrays.asList("Rock", "Bug")), new ArrayList<>(Arrays.asList(xScissor, stoneEdge, ironTail, crushClaw)),  135, 130, 105, 75, 85, 50);
         Pokemon stevensMetagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon arceus = new Pokemon("Arceus", 50, new ArrayList<>(Arrays.asList("Normal", null)), new ArrayList<>(Arrays.asList(judgement, shadowBall, thunder, extremeSpeed)), 180, 125, 125, 125, 125, 125);
+        Pokemon crobat = new Pokemon("Crobat", 50, new ArrayList<>(Arrays.asList("Poison", "Flying")), new ArrayList<>(Arrays.asList(crossPoison, xScissor, fly, steelWing)), 145, 95, 85, 75, 85, 135);
+        Pokemon excadrill = new Pokemon("excadrill", 50, new ArrayList<>(Arrays.asList("Ground", "Steel")), new ArrayList<>(Arrays.asList(throatChop, earthquake, rockSlide, ironHead)),  168, 135, 100, 85, 90, 107);
         Pokemon garchomp = new Pokemon("Garchomp", 50, new ArrayList<>(Arrays.asList("Dragon", "Ground")), new ArrayList<>(Arrays.asList(flamethrower, earthquake, outrage, crunch)),  168, 135, 100, 85, 90, 107);
+        Pokemon gyarados = new Pokemon("Gyarados", 50, new ArrayList<>(Arrays.asList("Water", "Flying")), new ArrayList<>(Arrays.asList(aquaTail, crunch, outrage, hurricane)), 155, 130, 84, 65, 105, 86);
+        Pokemon infernape = new Pokemon("Infernape", 50, new ArrayList<>(Arrays.asList("Fire", "Fighting")), new ArrayList<>(Arrays.asList(flareBlitz, acrobatics, closeCombat, earthquake)),  155, 65, 84, 105, 130, 86);
         Pokemon lucario = new Pokemon("Lucario", 50, new ArrayList<>(Arrays.asList("Fighting", "Steel")), new ArrayList<>(Arrays.asList(closeCombat, meteorMash, psychic, earthquake)),  130, 115, 75, 120, 75, 95);
         Pokemon metagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon milotic = new Pokemon("Milotic", 50, new ArrayList<>(Arrays.asList("Water", null)), new ArrayList<>(Arrays.asList(hydroPump, blizzard, iceBeam, scald)),  155, 65, 84, 105, 130, 86);
@@ -76,15 +99,18 @@ public class pokemonBattle {
         Pokemon roserade = new Pokemon("Roserade", 50, new ArrayList<>(Arrays.asList("Grass", "Poison")), new ArrayList<>(Arrays.asList(dazzlingGleam, shadowBall, sludgeBomb, energyBall)),  120, 75, 70, 130, 110, 95);
         Pokemon spiritomb = new Pokemon("Spiritomb", 50, new ArrayList<>(Arrays.asList("Ghost", "Dark")), new ArrayList<>(Arrays.asList(shadowBall, darkPulse, psychic, suckerPunch)),  110, 97, 113, 97, 113, 40);
         Pokemon togekiss = new Pokemon("Togekiss", 50, new ArrayList<>(Arrays.asList("Fairy", "Flying")), new ArrayList<>(Arrays.asList(airSlash, dazzlingGleam, auraSphere, waterPulse)),  145, 55, 100, 125, 120, 85);
-        Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(metalClaw, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
+        Pokemon weavile = new Pokemon("Weavile", 50, new ArrayList<>(Arrays.asList("Dark", "Ice")), new ArrayList<>(Arrays.asList(icePunch, throatChop, dig, aerialAce)), 130, 125, 70, 50, 90, 130);
+        Pokemon whiteKyurem = new Pokemon("White Kyurem", 50, new ArrayList<>(Arrays.asList("Dragon", "Ice")), new ArrayList<>(Arrays.asList(iceBeam, shadowBall, dracoMeteor, hyperVoice)), 185, 125, 95, 175, 105, 100);
         
         //Pokemon Teams
-        ArrayList<Pokemon> team1 = new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, garchomp, arceus, rayquaza));
+        ArrayList<Pokemon> team1 = new ArrayList<>(Arrays.asList(weavile, metagross, togekiss, crobat, garchomp, rayquaza));
+        ArrayList<Pokemon> team2 = new ArrayList<>(Arrays.asList(infernape, gyarados, spiritomb, excadrill, roserade, whiteKyurem));
+        ArrayList<Pokemon> team3 = new ArrayList<>(Arrays.asList(metagross, milotic, garchomp, lucario, roserade, arceus));
         ArrayList<Pokemon> cynthiasTeam = new ArrayList<>(Arrays.asList(cynthiasSpiritomb, cynthiasRoserade, cynthiasTogekiss, cynthiasLucario, cynthiasMilotic, cynthiasGarchomp));
-        ArrayList<Pokemon> cyrusTeam = new ArrayList<>(Arrays.asList(cyrusWeavile));
+        ArrayList<Pokemon> cyrusTeam = new ArrayList<>(Arrays.asList(cyrusHoundoom, cyrusHonchkrow, cyrusCrobat, cyrusGyarados, cyrusWeavile, cyrusGiratina));
         ArrayList<Pokemon> stevensTeam = new ArrayList<>(Arrays.asList(stevensSkarmory, stevensClaydol, stevensAggron, stevensCradily, stevensArmaldo, stevensMetagross));
         //Array of pokemon teams to choose from
-        ArrayList<ArrayList<Pokemon>> pokeTeams = new ArrayList<>(Arrays.asList(team1, cynthiasTeam));
+        ArrayList<ArrayList<Pokemon>> pokeTeams = new ArrayList<>(Arrays.asList(team1, team2, team3));
 
         //Trainers    -  https://bulbapedia.bulbagarden.net/wiki/Prize_money
         Trainer user;
@@ -147,7 +173,7 @@ public class pokemonBattle {
             choice = scanner.nextLine();
 
             //ensures the number of the team is valid
-            if (choice.equals("1") || choice.equals("2") || choice.equals("3") || choice.equals("4") || choice.equals("5")) {  
+            if (choice.equals("1") || choice.equals("2") || choice.equals("3")) {  
                 accepted = true;
             }
         }
