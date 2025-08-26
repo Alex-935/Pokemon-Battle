@@ -634,7 +634,7 @@ public class pokemonBattle {
     //decides which final message to print when the winner has been decided
     public static void matchEnd(Trainer user, Trainer comp) {
 
-        if (user.acePokemon.hasFainted) {
+        if (user.remainingPokemon == 0) {
             playerLost(user.prizeMoney);
         } else {
 
