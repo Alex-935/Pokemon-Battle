@@ -12,10 +12,10 @@ public class Pokemon {
     ArrayList<Move> moves;
     //Pokemon's Stats for battling
     int hp;
-    int atk;
-    int def;
-    int spAtk;
-    int spDef;
+    double atk;
+    double def;
+    double spAtk;
+    double spDef;
     int spd;
     int currentHp;
     boolean hasFainted;

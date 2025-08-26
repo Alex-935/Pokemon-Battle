@@ -96,7 +96,7 @@ public class pokemonBattle {
         Pokemon gardevoir = new Pokemon("Gardevoir", 50, new ArrayList<>(Arrays.asList("Psychic", "Fairy")), new ArrayList<>(Arrays.asList(moonblast, psychic, thunderbolt, energyBall)),  168, 135, 100, 85, 90, 107);
         Pokemon gengar = new Pokemon("Gengar", 50, new ArrayList<>(Arrays.asList("Ghost", "Poison")), new ArrayList<>(Arrays.asList(shadowBall, thunder, psychic, sludgeWave)),  120, 70, 65,135, 80, 115);
         Pokemon gyarados = new Pokemon("Gyarados", 50, new ArrayList<>(Arrays.asList("Water", "Flying")), new ArrayList<>(Arrays.asList(aquaTail, crunch, outrage, hurricane)), 155, 130, 84, 65, 105, 86);
-        Pokemon infernape = new Pokemon("Infernape", 50, new ArrayList<>(Arrays.asList("Fire", "Fighting")), new ArrayList<>(Arrays.asList(flareBlitz, acrobatics, closeCombat, earthquake)),  155, 65, 84, 105, 130, 86);
+        Pokemon infernape = new Pokemon("Infernape", 50, new ArrayList<>(Arrays.asList("Fire", "Fighting")), new ArrayList<>(Arrays.asList(flareBlitz, acrobatics, closeCombat, earthquake)),  136, 109, 76, 109, 76, 113);
         Pokemon lucario = new Pokemon("Lucario", 50, new ArrayList<>(Arrays.asList("Fighting", "Steel")), new ArrayList<>(Arrays.asList(closeCombat, meteorMash, psychic, earthquake)),  130, 115, 75, 120, 75, 95);
         Pokemon metagross = new Pokemon("Metagross", 50, new ArrayList<>(Arrays.asList("Steel", "Psychic")), new ArrayList<>(Arrays.asList(zenHeadbutt, meteorMash, bulletPunch, hammerArm)),  140, 154, 135, 100, 95, 75);
         Pokemon milotic = new Pokemon("Milotic", 50, new ArrayList<>(Arrays.asList("Water", null)), new ArrayList<>(Arrays.asList(hydroPump, blizzard, iceBeam, scald)),  155, 65, 84, 105, 130, 86);
@@ -364,6 +364,7 @@ public class pokemonBattle {
             //Status move
             baseDamage = 0;
         }
+        //System.out.println("Base damage after calculation: " + baseDamage);
 
         //type effectiveness
         double multiplier = 1;//multiplier we are going to multiply the moves damage with
@@ -387,15 +388,17 @@ public class pokemonBattle {
         } else if (multiplier == 0.0) {
             System.out.println("It doesn't effect " + defendingPokemon.name + "...");
         }
-
+        //System.out.printf("The base damage after typings: %f\n", baseDamage);
 
         //STAB - Same-Type Attack Bonus. If the pokemon's and moves type are the same, the move does 1.5x damage
         if (move.type.equals(attackingPokemon.type.get(0)) || move.type.equals(attackingPokemon.type.get(1))) {
             baseDamage *= 1.5;
         }
+        //System.out.printf("The base damage after stab: %f\n", baseDamage);
 
         //Adds randomly fluctuating battle damage
         baseDamage *= atkDmgRand.nextDouble(0.85, 1.0000000000000001);
+        //System.out.printf("The base damage after fluctuation: %f\n", baseDamage);
 
         //critical hits
         if (atkDmgRand.nextInt(1, 17) == 1) {
@@ -406,6 +409,9 @@ public class pokemonBattle {
         //Modifiers:
         //System.out.println("The damage is: " + baseDamage);
         //Math.floor(baseDamage)
+        //System.out.printf("The attacking pokemon is %s, with an attack of %f\n", attackingPokemon.name, attackingPokemon.atk);
+        //System.out.printf("The attacking pokemon is %s, with an attack of %f\n", defendingPokemon.name, defendingPokemon.def);
+        //System.out.println("The Damage is: " + baseDamage + "\n" + move.name + " has base damage: " + move.power);
         return (int) Math.floor(baseDamage);
     }
 
