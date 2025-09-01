@@ -536,6 +536,7 @@ public class pokemonBattle {
         }   
     }
 
+    //calls functions in correct order for the user attacking first
     public static void userAttacksFirst(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove) {
 
         //player's attack
@@ -556,7 +557,8 @@ public class pokemonBattle {
             System.out.println(battleScreen(userPokemon, compPokemon));
         }
     }
-
+    
+    //calls functions in correct order for the computer attacking first
     public static void compAttacksFirst(Trainer user, Pokemon userPokemon, Move userMove, Trainer comp, Pokemon compPokemon, Move compMove) {
 
         //computer's attck
@@ -574,7 +576,7 @@ public class pokemonBattle {
     }
 
     
-    //used to switch pokemon during battle
+    //used to switch user's pokemon during battle
     public static void userSwitchPokemon(Trainer user) {
 
         System.out.println("Your team is: ");
@@ -697,4 +699,4 @@ public class pokemonBattle {
         System.out.println();
     }
 
-}
+} 
